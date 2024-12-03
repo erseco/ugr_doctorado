@@ -6,6 +6,18 @@ theme: default
 paginate: true
 ---
 
+# ¡Bienvenidos a la presentacion de ANA! 🚀
+
+Aqui irá el texto que ana quiera
+
+1. querer a bowie
+2. querer a timy
+3. querer a **ernesto**
+  4. aguatnar a ~~juanito~~
+
+> noas
+---
+
 # ¡Bienvenidos a Marp! 🚀
 
 Un ecosistema para presentaciones basado en **Markdown**.
