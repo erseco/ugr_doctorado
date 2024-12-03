@@ -10,30 +10,62 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+    - name: Checkout code
+      uses: actions/checkout@v4
 
-      - name: Configure Knitr & Marp
-        run: make deps-deb
+    - name: Install additional dependencies
+      run: sudo apt-get install -y aspell curl
+
+    - name: Set up R
+    - uses: r-lib/actions/setup-r@v2
+    - uses: r-lib/actions/setup-r-dependencies@v2
+      with:
+        cache-version: 2
+        extra-packages: |
+          any::ggplot2
+          rmarkdown
+          knitr
+
+    - name: Set up Tectonic
+      uses: wtfjoke/setup-tectonic@v3
+      with:
+        github-token: ${{ secrets.GITHUB_TOKEN }}
+    #     biber-version: 'latest'
+
+    # - name: Convert Markdown into HTML and PDF
+    #   uses: KoharaKazuya/marp-cli-action@v2
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '16'
+
+    - name: Install Marp CLI
+      run: npm install -g @marp-team/marp-cli
+
+
+
+      # - name: Configure Knitr & Marp
+      #   run: make deps-deb
 
       # - uses: wtfjoke/setup-tectonic@v3
       #   with:
       #     github-token: ${{ secrets.GITHUB_TOKEN }}
       #     biber-version: 'latest'
 
-      - name: Generate PDFs
-        run: make all
+    - name: Generate PDFs
+      run: make all
 
-      - name: Upload PDFs to Pre-release
-        if: github.event_name == 'push'
-        uses: actions/upload-artifact@v3
-        with:
-          name: PDFs
-          path: output/**/*.pdf
+    - name: Upload PDFs to Pre-release
+      if: github.event_name == 'push'
+      uses: actions/upload-artifact@v3
+      with:
+        name: PDFs
+        path: output/**/*.pdf
 
-      - name: Release PDFs
-        if: github.event_name == 'release'
-        uses: ncipollo/release-action@v1
-        with:
-          artifacts: 'output/**/*.pdf'
-          token: ${{ secrets.GITHUB_TOKEN }}
+    - name: Release PDFs
+      if: github.event_name == 'release'
+      uses: ncipollo/release-action@v1
+      with:
+        artifacts: 'output/**/*.pdf'
+        token: ${{ secrets.GITHUB_TOKEN }}
