@@ -13,61 +13,41 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v4
 
-    - name: Install additional dependencies
-      run: sudo apt-get install -y aspell curl
-
     - name: Set up R
       uses: r-lib/actions/setup-r@v2
+      with:
+        use-public-rspm: true
 
-    - name: Debug R environment
-      run: |
-        Rscript -e 'installed.packages()'
-        Rscript -e 'sessionInfo()'
-
-    - uses: r-lib/actions/setup-r-dependencies@v2
+    - name: Install packages
+      uses: r-lib/actions/setup-r-dependencies@v2
       with:
         cache-version: 2
-        extra-packages: |
-          ggplot2
-          rmarkdown
-          knitr
-          devtools
-
-    - name: Debug R environment 2
-      run: |
-        Rscript -e 'installed.packages()'
-        Rscript -e 'sessionInfo()'
-
+        packages: |
+          any::rmarkdown
+          any::knitr
+    
+    - name: Setup Pandoc
+      uses: r-lib/actions/setup-pandoc@v2
 
     - name: Set up Tectonic
-      uses: wtfjoke/setup-tectonic@v3
-      with:
-        github-token: ${{ secrets.GITHUB_TOKEN }}
-    #     biber-version: 'latest'
+        uses: wtfjoke/setup-tectonic@v3
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
 
-    # - name: Convert Markdown into HTML and PDF
-    #   uses: KoharaKazuya/marp-cli-action@v2
+  
+    # - name: Genera pdf de prueba
+    #   run: |
+    #     rmarkdown::render('sample.Rmd', output_format = rmarkdown::pdf_document(latex_engine = 'tectonic'), output_file = 'sample.pdf' )
+    #   shell: Rscript {0}        
 
-    - name: Set up Node.js
-      uses: actions/setup-node@v3
-      with:
-        node-version: '16'
 
-    - name: Install Marp CLI
+    # - run: docker run --rm -v $PWD:/workspace ghcr.io/marp-team/marp-cli:latest --version
+    # - run: npx @marp-team/marp-cli@latest --version
+    - name: Set up Marp
       run: npm install -g @marp-team/marp-cli
 
-
-
-      # - name: Configure Knitr & Marp
-      #   run: make deps-deb
-
-      # - uses: wtfjoke/setup-tectonic@v3
-      #   with:
-      #     github-token: ${{ secrets.GITHUB_TOKEN }}
-      #     biber-version: 'latest'
-
     - name: Generate PDFs
-      run: make all
+      run: make slides
 
     - name: Upload PDFs to Pre-release
       if: github.event_name == 'push'

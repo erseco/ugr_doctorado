@@ -106,15 +106,36 @@ $(OUTPUT_DIR)/project.pdf: project/project.Rmd bibliography/*.bib
 	@echo "Project compiled: $@"
 
 # Build Papers
+# papers: $(PAPERS_PDF)
 papers: $(PAPERS_PDF)
+	@echo "All papers compiled successfully."
 
 PAPERS_SRC := $(wildcard papers/*/*.Rmd)
-PAPERS_PDF := $(patsubst papers/%.Rmd, $(OUTPUT_DIR)/papers/%.pdf, $(PAPERS_SRC))
+$(info PAPERS_SRC: $(PAPERS_SRC))
 
-$(OUTPUT_DIR)/papers/%.pdf: papers/%/*.Rmd | $(OUTPUT_DIR)/papers/%
-	@mkdir -p $(dir $@)
-	@$(R_SCRIPT) -e "rmarkdown::render('$<', output_file='$@', output_format = rmarkdown::pdf_document(latex_engine = '$(PDF_ENGINE)'), params = list(bibliography = '$(BIB_FILE)', csl = '$(CSL)'))"
+PAPERS_PDF := $(PAPERS_SRC:papers/%.Rmd=$(OUTPUT_DIR)/papers/%.pdf)
+$(info PAPERS_PDF: $(PAPERS_PDF))
+
+
+# $(OUTPUT_DIR)/papers/%.pdf: papers/%/%.Rmd | $(OUTPUT_DIR)/papers
+# 	@mkdir -p $(dir $@)
+# 	@$(R_SCRIPT) -e "rmarkdown::render('$<', output_file='$@', output_format = rmarkdown::pdf_document(latex_engine = '$(PDF_ENGINE)'), params = list(bibliography = '$(BIB_FILE)', csl = '$(CSL)'))"
+# 	@echo "Paper compiled: $@"
+
+# Regla para compilar cada Rmd a PDF
+$(OUTPUT_DIR)/papers/%.pdf: papers/%/%.Rmd
+	@mkdir -p $(dir $@) # Esta línea asegurará que se cree el directorio de salida completo
+	@echo "Rendering $< to $@..."
+	@$(R_SCRIPT) -e "rmarkdown::render('$<', output_file='$@', output_format = rmarkdown::pdf_document(latex_engine = '$(PDF_ENGINE)'), params = list(bibliography = '$(BIB_FILE)', csl = '$(CSL)'))" || { \
+		echo "Error: Failed to compile $<"; \
+		exit 1; \
+	}
 	@echo "Paper compiled: $@"
+
+# $(OUTPUT_DIR)/papers/%.pdf: papers/%/*.Rmd | $(OUTPUT_DIR)/papers/%
+# 	@mkdir -p $(dir $@)
+# 	@$(R_SCRIPT) -e "rmarkdown::render('$<', output_file='$@', output_format = rmarkdown::pdf_document(latex_engine = '$(PDF_ENGINE)'), params = list(bibliography = '$(BIB_FILE)', csl = '$(CSL)'))"
+# 	@echo "Paper compiled: $@"
 
 # Ensure output directories for papers
 $(OUTPUT_DIR)/papers/%:
@@ -126,14 +147,24 @@ slides: $(SLIDES_PDF)
 SLIDES_SRC := $(wildcard slides/*.md)
 SLIDES_PDF := $(patsubst slides/%.md, $(OUTPUT_DIR)/slides/%.pdf, $(SLIDES_SRC))
 
-$(OUTPUT_DIR)/slides/%.pdf: slides/%.md | $(OUTPUT_DIR)/slides
+$(OUTPUT_DIR)/slides/%.pdf: slides/%.md
 	@mkdir -p $(dir $@)
 	@$(MARP) $< -o $@
 	@echo "Slide compiled: $@"
 
-# Ensure output directory for slides
-$(OUTPUT_DIR)/slides:
+slides: $(SLIDES_PDF)
+	@echo "All slides compiled successfully."
 	@mkdir -p $@
+
+
+# $(OUTPUT_DIR)/slides/%.pdf: slides/%.md | $(OUTPUT_DIR)/slides
+# 	@mkdir -p $(dir $@)
+# 	@$(MARP) $< -o $@
+# 	@echo "Slide compiled: $@"
+
+# # Ensure output directory for slides
+# $(OUTPUT_DIR)/slides:
+# 	@mkdir -p $@
 
 # Lint LaTeX code
 lint:
