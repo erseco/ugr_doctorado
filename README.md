@@ -9,7 +9,7 @@ This repository contains all the material related to my PhD, including the thesi
 
 ## **Repository Structure**
 
-- **[project/](project/):** General project-related files.  
+- **[project/](project/):** Initial project, previous to thesis.  
 - **[thesis/](thesis/):** Files for the thesis written in LaTeX and Markdown.  
 - **[papers/](papers/):** Research papers and publications.  
   - **[00_sample/](papers/00_sample/):** Sample article.  
