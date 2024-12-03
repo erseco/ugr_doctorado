@@ -1,0 +1,36 @@
+name: Generar y Publicar Documentación
+
+on:
+  push:
+    branches: [ main ]
+  release:
+    types: [ created ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout del repositorio
+        uses: actions/checkout@v4
+
+      - name: Configurar Pandoc y LaTeX
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y pandoc texlive
+
+      - name: Generar PDFs
+        run: make
+
+      - name: Subir PDFs a Pre-release
+        if: github.event_name == 'push'
+        uses: actions/upload-artifact@v3
+        with:
+          name: PDFs
+          path: output/**/*.pdf
+
+      - name: Publicar PDFs en Release
+        if: github.event_name == 'release'
+        uses: ncipollo/release-action@v1
+        with:
+          artifacts: 'output/**/*.pdf'
+          token: ${{ secrets.GITHUB_TOKEN }}

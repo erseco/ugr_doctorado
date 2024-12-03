@@ -1,0 +1,54 @@
+# Ignore LaTeX intermediate files
+*.aux
+*.lof
+*.log
+*.lot
+*.fls
+*.out
+*.toc
+*.fmt
+*.fot
+*.cb
+*.cb2
+*.blg
+*.bbl
+*.bcf
+*.synctex.gz
+*.fdb_latexmk
+*.run.xml
+
+# Ignore output PDFs
+output/
+
+# Ignore temporary files
+*.tmp
+*.temp
+*.bak
+*~
+*.swp
+*.swo
+.DS_Store
+
+# Ignore backup files created by editors
+*.sav
+*.backup
+
+# Ignore directories created by LaTeX editors
+_texbuild/
+_tex/
+auto/
+_build/
+
+# Ignore metadata and hidden files
+Thumbs.db
+
+# macOS system files
+.DS_Store
+._*
+.Spotlight-V100
+.Trashes
+.AppleDouble
+.FinderInfo
+.VolumeIcon.icns
+.icon
+.fseventsd
