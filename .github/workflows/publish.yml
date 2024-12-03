@@ -1,4 +1,4 @@
-name: Generar y Publicar Documentación
+name: Generate docs
 
 on:
   push:
@@ -10,25 +10,28 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout del repositorio
+      - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Configurar Pandoc y LaTeX
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y pandoc texlive
+      - name: Configure Knitr & Marp
+        run: make deps-deb
 
-      - name: Generar PDFs
-        run: make
+      # - uses: wtfjoke/setup-tectonic@v3
+      #   with:
+      #     github-token: ${{ secrets.GITHUB_TOKEN }}
+      #     biber-version: 'latest'
 
-      - name: Subir PDFs a Pre-release
+      - name: Generate PDFs
+        run: make all
+
+      - name: Upload PDFs to Pre-release
         if: github.event_name == 'push'
         uses: actions/upload-artifact@v3
         with:
           name: PDFs
           path: output/**/*.pdf
 
-      - name: Publicar PDFs en Release
+      - name: Release PDFs
         if: github.event_name == 'release'
         uses: ncipollo/release-action@v1
         with:

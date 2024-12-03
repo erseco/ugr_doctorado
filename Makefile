@@ -1,52 +1,65 @@
 ###############################################################################
 #
 # PhD - Doctoral Project
-# Universidad de Granada
+# University of Granada
 #
-# Makefile for generating documentation with LaTeX and Markdown
+# Makefile for generating documentation with LaTeX, RMarkdown, and Markdown
 #
 # Author: Ernesto Serrano <erseco@correo.ugr.es>
 ###############################################################################
 
 # Variables
-PANDOC = pandoc
-LATEX = pdflatex
-BIBER = biber
-CURL = curl
-SPELLCHECK = aspell
-OUTPUT_DIR = output
-ZOTERO_BIB_URL = https://api.zotero.org/groups/5784268/items/top?format=biblatex
-BIB_FILE = bibliography/references.bib
-
-# Files
-THESIS_SRC = thesis/project.tex
-THESIS_PDF = $(OUTPUT_DIR)/thesis.pdf
-
-SLIDES_SRC = $(wildcard slides/*.md)
-SLIDES_PDF = $(patsubst %.md, $(OUTPUT_DIR)/%.pdf, $(SLIDES_SRC))
-
-PAPERS_SRC = $(wildcard papers/*/*.md)
-PAPERS_PDF = $(patsubst %.md, $(OUTPUT_DIR)/%.pdf, $(PAPERS_SRC))
+R_SCRIPT := Rscript
+PDF_ENGINE := tectonic
+CURL := curl
+SPELLCHECK := aspell
+MARP := marp
+OUTPUT_DIR := output
+ZOTERO_BIB_URL := https://api.zotero.org/groups/5784268/items/top?format=biblatex
+BIB_FILE := bibliography/references.bib
+CSL := bibliography/ieee.csl
+THESIS_TEX := thesis/thesis.tex
+THESIS_PDF := $(OUTPUT_DIR)/thesis.pdf
 
 # Main rules
-.PHONY: all thesis papers slides clean lint validate check-latex check-pandoc help
+.PHONY: all thesis project papers slides clean lint validate update-bib check-dependencies help
 
 # Default target
 .DEFAULT_GOAL := help
 
 # Build everything
-all: check-latex check-pandoc thesis papers slides
+all: check-dependencies update-bib thesis project papers slides
 
 # Verify dependencies
-check-latex:
-	@command -v $(LATEX) >/dev/null 2>&1 || { \
-		echo "Error: pdflatex is not installed. Please install LaTeX (e.g., TeX Live or MacTeX)."; \
+check-dependencies: check-r check-tectonic check-curl check-spellcheck check-marp
+
+check-r:
+	@command -v Rscript >/dev/null 2>&1 || { \
+		echo "Error: R is not installed. Please install it."; \
 		exit 1; \
 	}
 
-check-pandoc:
-	@command -v $(PANDOC) >/dev/null 2>&1 || { \
-		echo "Error: pandoc is not installed. Please install it."; \
+check-tectonic:
+	@command -v $(PDF_ENGINE) >/dev/null 2>&1 || { \
+		echo "Error: $(PDF_ENGINE) is not installed. Please install it."; \
+		exit 1; \
+	}
+
+check-curl:
+	@command -v $(CURL) >/dev/null 2>&1 || { \
+		echo "Error: curl is not installed. Please install it."; \
+		exit 1; \
+	}
+
+check-spellcheck:
+	@command -v $(SPELLCHECK) >/dev/null 2>&1 || { \
+		echo "Error: $(SPELLCHECK) is not installed. Please install it."; \
+		exit 1; \
+	}
+
+check-marp:
+	@command -v $(MARP) >/dev/null 2>&1 || { \
+		echo "Error: $(MARP) is not installed. Please install it."; \
 		exit 1; \
 	}
 
@@ -57,65 +70,135 @@ update-bib:
 	@$(CURL) -sSL "$(ZOTERO_BIB_URL)" -o $(BIB_FILE)
 	@echo "Bibliography updated: $(BIB_FILE)"
 
-# Build thesis
+# Build Thesis
 thesis: $(THESIS_PDF)
 
-$(THESIS_PDF): $(THESIS_SRC)
-	@mkdir -p $(OUTPUT_DIR)
-	$(LATEX) -shell-escape -synctex=1 -interaction=nonstopmode -output-directory=$(OUTPUT_DIR) $<
-	$(BIBER) $(basename $(OUTPUT_DIR)/$(notdir $<))
-	$(LATEX) -shell-escape -synctex=1 -interaction=nonstopmode -output-directory=$(OUTPUT_DIR) $<
-	$(LATEX) -shell-escape -synctex=1 -interaction=nonstopmode -output-directory=$(OUTPUT_DIR) $<
+# Find Rmd files in thesis
+THESIS_RMD := $(wildcard thesis/*.Rmd)
+THESIS_TEX := $(patsubst thesis/%.Rmd, thesis/%.tex, $(THESIS_RMD))
 
-# Build papers
+# Find Rmd files in thesis chapters
+THESIS_CHAPTERS_RMD := $(wildcard thesis/chapters/*.Rmd)
+THESIS_CHAPTERS_TEX := $(patsubst thesis/chapters/%.Rmd, thesis/chapters/%.tex, $(THESIS_CHAPTERS_RMD))
+
+# Convert Rmd files to tex
+thesis/%.tex: thesis/%.Rmd
+	@echo "Rendering $< to $@..."
+	@$(R_SCRIPT) -e "knitr::knit('$<', output = '$@')"
+
+thesis/chapters/%.tex: thesis/chapters/%.Rmd
+	@echo "Rendering $< to $@..."
+	@$(R_SCRIPT) -e "knitr::knit('$<', output = '$@')"
+
+# Build thesis PDF
+$(THESIS_PDF): $(THESIS_TEX) $(THESIS_CHAPTERS_TEX) $(THESIS_TEX)
+	@mkdir -p $(OUTPUT_DIR)
+	@echo "Compiling thesis..."
+	@$(PDF_ENGINE) -o $@ $(THESIS_TEX)
+	@echo "Thesis compiled: $@"
+
+# Build Project
+project: $(OUTPUT_DIR)/project.pdf
+
+$(OUTPUT_DIR)/project.pdf: project/project.Rmd bibliography/*.bib
+	@mkdir -p $(OUTPUT_DIR)
+	@$(R_SCRIPT) -e "rmarkdown::render('$<', output_file='$@', output_format = rmarkdown::pdf_document(latex_engine = '$(PDF_ENGINE)'), params = list(bibliography = '$(BIB_FILE)', csl = '$(CSL)'))"
+	@echo "Project compiled: $@"
+
+# Build Papers
 papers: $(PAPERS_PDF)
 
-$(OUTPUT_DIR)/%.pdf: %.md
-	@mkdir -p $(dir $@)
-	$(PANDOC) $< -o $@
+PAPERS_SRC := $(wildcard papers/*/*.Rmd)
+PAPERS_PDF := $(patsubst papers/%.Rmd, $(OUTPUT_DIR)/papers/%.pdf, $(PAPERS_SRC))
 
-# Build slides
+$(OUTPUT_DIR)/papers/%.pdf: papers/%/*.Rmd | $(OUTPUT_DIR)/papers/%
+	@mkdir -p $(dir $@)
+	@$(R_SCRIPT) -e "rmarkdown::render('$<', output_file='$@', output_format = rmarkdown::pdf_document(latex_engine = '$(PDF_ENGINE)'), params = list(bibliography = '$(BIB_FILE)', csl = '$(CSL)'))"
+	@echo "Paper compiled: $@"
+
+# Ensure output directories for papers
+$(OUTPUT_DIR)/papers/%:
+	@mkdir -p $@
+
+# Build Slides
 slides: $(SLIDES_PDF)
 
-$(OUTPUT_DIR)/%.pdf: %.md
+SLIDES_SRC := $(wildcard slides/*.md)
+SLIDES_PDF := $(patsubst slides/%.md, $(OUTPUT_DIR)/slides/%.pdf, $(SLIDES_SRC))
+
+$(OUTPUT_DIR)/slides/%.pdf: slides/%.md | $(OUTPUT_DIR)/slides
 	@mkdir -p $(dir $@)
-	$(PANDOC) $< -o $@
+	@$(MARP) $< -o $@
+	@echo "Slide compiled: $@"
+
+# Ensure output directory for slides
+$(OUTPUT_DIR)/slides:
+	@mkdir -p $@
 
 # Lint LaTeX code
 lint:
 	@echo "Checking LaTeX code style..."
-	@$(SPELLCHECK) --lang=en --mode=tex check $(THESIS_SRC)
-	@find thesis/ -name "*.tex" -exec $(SPELLCHECK) --lang=en --mode=tex check "{}" \;
+	@find thesis/ -name "*.tex" -exec $(SPELLCHECK) --lang=en --mode=tex check {} \;
 
-# Validate thesis compilation
-validate:
-	@echo "Validating LaTeX compilation..."
-	@$(LATEX) -shell-escape -synctex=1 -interaction=nonstopmode -output-directory=$(OUTPUT_DIR) $(THESIS_SRC) || { \
-		echo "Error: Failed to compile thesis. Check LaTeX errors."; \
+# Validate Thesis Compilation
+validate: check-dependencies
+	@echo "Validating LaTeX compilation with RMarkdown..."
+	@$(R_SCRIPT) -e "rmarkdown::render('project/project.Rmd', output_format = rmarkdown::pdf_document(latex_engine = '$(PDF_ENGINE)'), output_file = '$(OUTPUT_DIR)/project_validate.pdf', params = list(bibliography = '$(BIB_FILE)', csl = '$(CSL)'))" || { \
+		echo "Error: Project compilation failed. Check LaTeX errors."; \
 		exit 1; \
 	}
-	@echo "Validation complete: Thesis compiles successfully."
+	@echo "Validation complete: The project compiles successfully."
+
+# Install minimal dependencies on Mac using Homebrew
+deps-mac:
+	@brew install R
+	@brew install tectonic
+	@brew install aspell
+	@brew install marp-cli
+	@$(R_SCRIPT) -e "install.packages(c('rmarkdown', 'knitr'), repos='https://cloud.r-project.org')"
+
+# Install minimal dependencies on Debian
+deps-deb:
+	@sudo apt-get update
+	@sudo apt-get install -y r-base
+	@sudo apt-get install -y aspell
+	@sudo apt-get install -y npm
+	@sudo npm install -g @marp-team/marp-cli
+	@sudo apt-get install -y wget
+	# Install Tectonic
+	@wget https://github.com/tectonic-typesetting/tectonic/releases/download/latest/tectonic-install.sh -O /tmp/tectonic-install.sh
+	@chmod +x /tmp/tectonic-install.sh
+	@sudo /tmp/tectonic-install.sh
+	@$(R_SCRIPT) -e "install.packages(c('rmarkdown', 'knitr'), repos='https://cloud.r-project.org')"
 
 # Clean generated files
 clean:
 	@echo "Cleaning temporary and output files..."
-	@rm -rf $(OUTPUT_DIR)/* thesis/*.aux thesis/*.lof thesis/*.log thesis/*.lol \
-		thesis/*.lot thesis/*.out thesis/*.synctex.gz thesis/*.toc thesis/*.run.xml \
-		thesis/*.bbl thesis/*.bcf thesis/*.blg
+	@rm -rf $(OUTPUT_DIR)
+	@find thesis/ -name "*.aux" -o -name "*.lof" -o -name "*.log" -o -name "*.lol" \
+		-o -name "*.lot" -o -name "*.out" -o -name "*.synctex.gz" -o -name "*.toc" \
+		-o -name "*.run.xml" -o -name "*.bbl" -o -name "*.bcf" -o -name "*.blg" | xargs rm -f
+	@find thesis/ -name "*.tex" -o -name "*.pdf" -o -name "*.md" | xargs rm -f
 
 # Help menu
 help:
 	@echo "Available commands:"
-	@echo "  all                - Build everything (thesis, papers, slides)"
+	@echo "  all                - Build everything (thesis, project, papers, slides)"
 	@echo "  thesis             - Build the thesis PDF"
-	@echo "  papers             - Build all paper PDFs"
-	@echo "  slides             - Build all slide PDFs"
-	@echo "  lint               - Check LaTeX style and spelling"
-	@echo "  validate           - Validate that the thesis compiles successfully"
-	@echo "  update-bib         - Download bibliography from Zotero in biblatex format"	
+	@echo "  project            - Build the project PDF"
+	@echo "  papers             - Build PDFs for all papers"
+	@echo "  slides             - Build PDFs for all slides"
+	@echo "  lint               - Check LaTeX code style and spelling"
+	@echo "  validate           - Validate that the project compiles correctly"
+	@echo "  update-bib         - Download bibliography from Zotero in biblatex format"
+	@echo "  deps-mac	        - Download and install deps for Mac"	
+	@echo "  deps-deb	        - Download and install deps for Debian/Ubuntu"	
 	@echo "  clean              - Remove temporary and generated files"
 	@echo "  help               - Show this help menu"
 	@echo ""
 	@echo "Additional checks:"
-	@echo "  check-latex        - Verify that pdflatex is installed"
-	@echo "  check-pandoc       - Verify that pandoc is installed"
+	@echo "  check-r            - Verify that R is installed"
+	@echo "  check-tectonic     - Verify that tectonic is installed"
+	@echo "  check-curl         - Verify that curl is installed"
+	@echo "  check-spellcheck   - Verify that $(SPELLCHECK) is installed"
+	@echo "  check-marp         - Verify that $(MARP) is installed"

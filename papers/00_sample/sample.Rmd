@@ -1,0 +1,72 @@
+---
+title: "Artículo de Ejemplo"
+author: "Ernesto Serrano"
+date: "`r Sys.Date()`"
+bibliography: ../../bibliography/references.bib
+csl: ../../bibliography/ieee.csl
+link-citations: true
+toc: true
+numbersections: true
+output:
+  pdf_document:
+    toc: true
+    number_sections: true
+---
+
+# Introducción
+
+Este es el contenido inicial del artículo de ejemplo. En este documento, se ilustra cómo incluir imágenes, fórmulas matemáticas y referencias bibliográficas utilizando Markdown.
+
+## Figura de Ejemplo
+
+La Figura 1 muestra una representación gráfica de la arquitectura propuesta para la defensa de objetivos móviles.
+
+![Arquitectura del Sistema](../../images/sample4.jpg)
+*Figura 1: Arquitectura propuesta para la defensa de objetivos móviles.*
+
+## Gráfico Generado con R
+
+```{r plot-example, echo=TRUE, fig.cap="Gráfico generado dinámicamente con R."}
+x <- seq(0, 10, by = 0.1)
+y <- sin(x)
+plot(x, y, type = "l", col = "blue", lwd = 2, main = "Seno de X")
+```
+
+## Fórmula Matemática
+
+La ecuación fundamental que relaciona la energía con la masa es la siguiente:
+
+$$
+E = mc^2
+$$
+
+Esta fórmula es esencial en la teoría de la relatividad de Einstein.
+
+## Referencias
+
+Según estudios recientes [@serrano-collado_improving_2020], se ha demostrado que la evolución de las configuraciones de servicio puede mejorar significativamente la defensa de objetivos móviles.
+
+## Objetivos
+
+- Objetivo 1
+- Objetivo 2
+- Objetivo 3
+
+## Formato
+
+Esto es un texto con formato ~~tachado~~, **negrita**, *cursiva* y <ins>subrayado<ins>.
+Aquí había algo `con codigo` y aquí sin él.
+Aquí ~subindice~.
+
+## Ejemplo de Código
+
+```javascript
+function saludo() {
+    console.log("¡Hola, mundo!");
+}
+```
+
+# Conclusión
+
+Este artículo de ejemplo demuestra cómo estructurar un documento científico en Markdown, integrando elementos visuales, matemáticos y bibliográficos de manera efectiva.
+
