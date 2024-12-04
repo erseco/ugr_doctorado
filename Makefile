@@ -97,50 +97,71 @@ $(THESIS_PDF): $(THESIS_TEX) $(THESIS_CHAPTERS_TEX) $(THESIS_TEX)
 	@$(PDF_ENGINE) -o $@ $(THESIS_TEX)
 	@echo "Thesis compiled: $@"
 
+# ----------------------------
+# ----------------------------
 # Build Project
-project: $(OUTPUT_DIR)/project.pdf
 
-$(OUTPUT_DIR)/project.pdf: project/project.Rmd bibliography/*.bib
-	@mkdir -p $(OUTPUT_DIR)
-	@$(R_SCRIPT) -e "rmarkdown::render('$<', output_file='$@', output_format = rmarkdown::pdf_document(latex_engine = '$(PDF_ENGINE)'), params = list(bibliography = '$(BIB_FILE)', csl = '$(CSL)'))"
+project: $(OUTPUT_DIR)/project/project.pdf
+
+# Ensure output directory exists
+$(OUTPUT_DIR)/project:
+	@mkdir -p $@
+
+$(OUTPUT_DIR)/project/project.pdf: project/project.Rmd bibliography/*.bib | $(OUTPUT_DIR)/project
+	@echo "Rendering project..."
+	$(R_SCRIPT) -e "rmarkdown::render('project/project.Rmd', \
+		output_file='../$(OUTPUT_DIR)/project/project.pdf', \
+		output_format=rmarkdown::pdf_document(latex_engine=\"$(PDF_ENGINE)\"), \
+		params=list(bibliography='$(pwd)/$(BIB_FILE)', csl='$(pwd)/$(CSL)'))" || { \
+		echo 'Error: Failed to compile $<'; \
+		exit 1; \
+	}
 	@echo "Project compiled: $@"
 
+# ----------------------------
+# ----------------------------
 # Build Papers
-# papers: $(PAPERS_PDF)
-papers: $(PAPERS_PDF)
-	@echo "All papers compiled successfully."
 
+# Source files for papers
+# Source files for papers
+# Source files for papers
 PAPERS_SRC := $(wildcard papers/*/*.Rmd)
 $(info PAPERS_SRC: $(PAPERS_SRC))
 
+# Target PDF files for papers
 PAPERS_PDF := $(PAPERS_SRC:papers/%.Rmd=$(OUTPUT_DIR)/papers/%.pdf)
 $(info PAPERS_PDF: $(PAPERS_PDF))
 
+# Build Papers
+.PHONY: papers
+papers: $(PAPERS_PDF)
+	@echo "All papers compiled successfully."
 
-# $(OUTPUT_DIR)/papers/%.pdf: papers/%/%.Rmd | $(OUTPUT_DIR)/papers
-# 	@mkdir -p $(dir $@)
-# 	@$(R_SCRIPT) -e "rmarkdown::render('$<', output_file='$@', output_format = rmarkdown::pdf_document(latex_engine = '$(PDF_ENGINE)'), params = list(bibliography = '$(BIB_FILE)', csl = '$(CSL)'))"
-# 	@echo "Paper compiled: $@"
+# Ensure output directory for individual papers
+$(OUTPUT_DIR)/papers/%:
+	@echo "Ensuring directory $@ exists..."
+	@mkdir -p $@
 
-# Regla para compilar cada Rmd a PDF
-$(OUTPUT_DIR)/papers/%.pdf: papers/%/%.Rmd
-	@mkdir -p $(dir $@) # Esta línea asegurará que se cree el directorio de salida completo
-	@echo "Rendering $< to $@..."
-	@$(R_SCRIPT) -e "rmarkdown::render('$<', output_file='$@', output_format = rmarkdown::pdf_document(latex_engine = '$(PDF_ENGINE)'), params = list(bibliography = '$(BIB_FILE)', csl = '$(CSL)'))" || { \
+# Build individual PDF from Rmd
+$(OUTPUT_DIR)/papers/%.pdf: papers/%/%.Rmd | $(OUTPUT_DIR)/papers/%
+	@echo "Rendering paper $< to $@..."
+	$(R_SCRIPT) -e "rmarkdown::render(input = '$<', \
+		output_file = '$(abspath $@)', \
+		output_format = rmarkdown::pdf_document(latex_engine = \"$(PDF_ENGINE)\"), \
+		params = list(bibliography = '$(pwd)/$(BIB_FILE)', csl = '$(pwd)/$(CSL)'))" || { \
 		echo "Error: Failed to compile $<"; \
 		exit 1; \
 	}
 	@echo "Paper compiled: $@"
 
-# $(OUTPUT_DIR)/papers/%.pdf: papers/%/*.Rmd | $(OUTPUT_DIR)/papers/%
-# 	@mkdir -p $(dir $@)
-# 	@$(R_SCRIPT) -e "rmarkdown::render('$<', output_file='$@', output_format = rmarkdown::pdf_document(latex_engine = '$(PDF_ENGINE)'), params = list(bibliography = '$(BIB_FILE)', csl = '$(CSL)'))"
-# 	@echo "Paper compiled: $@"
+# Clean generated files
+clean:
+	@echo "Cleaning temporary and output files..."
+	@rm -rf $(OUTPUT_DIR)
 
-# Ensure output directories for papers
-$(OUTPUT_DIR)/papers/%:
-	@mkdir -p $@
 
+# ----------------------------
+# ----------------------------
 # Build Slides
 slides: $(SLIDES_PDF)
 
@@ -155,7 +176,6 @@ $(OUTPUT_DIR)/slides/%.pdf: slides/%.md
 slides: $(SLIDES_PDF)
 	@echo "All slides compiled successfully."
 	@mkdir -p $@
-
 
 # $(OUTPUT_DIR)/slides/%.pdf: slides/%.md | $(OUTPUT_DIR)/slides
 # 	@mkdir -p $(dir $@)
