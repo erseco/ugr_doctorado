@@ -3,6 +3,7 @@ name: Generate docs
 on:
   push:
     paths:
+      - '.github/workflows/docs.yml'
       - 'papers/**'
       - 'thesis/**'
       - 'slides/**'
