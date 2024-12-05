@@ -116,10 +116,14 @@ $(OUTPUT_DIR)/project/project.pdf: project/project.Rmd bibliography/*.bib | $(OU
 	$(R_SCRIPT) -e "rmarkdown::render('project/project.Rmd', \
 		output_file='../$(OUTPUT_DIR)/project/project.pdf', \
 		output_format=rmarkdown::pdf_document(latex_engine=\"$(PDF_ENGINE)\"), \
-		params=list(bibliography='$(pwd)/$(BIB_FILE)', csl='$(pwd)/$(CSL)'))" || { \
+		params=list(bibliography='$(pwd)/$(BIB_FILE)', csl='$(pwd)/$(CSL)'), \
+		envir=new.env(), knit_root_dir='$(shell pwd)')" || { \
 		echo 'Error: Failed to compile $<'; \
 		exit 1; \
 	}
+
+	@echo "Step 5: Checking LaTeX log for errors..."
+	@ls -l $(OUTPUT_DIR)/project/project.log && tail -n 20 $(OUTPUT_DIR)/project/project.log || echo "Warning: LaTeX log file not found."
 
 	@echo "Step 3: Checking if .tex file was generated..."
 	@ls -l $(OUTPUT_DIR)/project/project.tex || echo "Warning: .tex file not found."
@@ -169,9 +173,6 @@ $(OUTPUT_DIR)/papers/%.pdf: papers/%/%.Rmd | $(OUTPUT_DIR)/papers/%
 	@echo "Paper compiled: $@"
 
 # Clean generated files
-clean:
-	@echo "Cleaning temporary and output files..."
-	@rm -rf $(OUTPUT_DIR)
 
 
 # ----------------------------
