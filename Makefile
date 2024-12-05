@@ -109,6 +109,10 @@ $(OUTPUT_DIR)/project:
 
 $(OUTPUT_DIR)/project/project.pdf: project/project.Rmd bibliography/*.bib | $(OUTPUT_DIR)/project
 	@echo "Rendering project..."
+	@echo "Step 1: Checking if output directory exists..."
+	@ls -l $(OUTPUT_DIR)/project || echo "Output directory is empty or does not exist yet."
+
+	@echo "Step 2: Rendering RMarkdown to PDF..."
 	$(R_SCRIPT) -e "rmarkdown::render('project/project.Rmd', \
 		output_file='../$(OUTPUT_DIR)/project/project.pdf', \
 		output_format=rmarkdown::pdf_document(latex_engine=\"$(PDF_ENGINE)\"), \
@@ -116,7 +120,17 @@ $(OUTPUT_DIR)/project/project.pdf: project/project.Rmd bibliography/*.bib | $(OU
 		echo 'Error: Failed to compile $<'; \
 		exit 1; \
 	}
-	@echo "Project compiled: $@"
+
+	@echo "Step 3: Checking if .tex file was generated..."
+	@ls -l $(OUTPUT_DIR)/project/project.tex || echo "Warning: .tex file not found."
+
+	@echo "Step 4: Checking if .pdf file was generated..."
+	@ls -l $(OUTPUT_DIR)/project/project.pdf || { \
+		echo "Error: .pdf file not found. Compilation failed."; \
+		exit 1; \
+	}
+
+	@echo "Project compiled successfully: $@"
 
 # ----------------------------
 # ----------------------------
