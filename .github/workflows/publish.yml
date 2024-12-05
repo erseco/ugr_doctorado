@@ -9,6 +9,8 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
     - name: Checkout code
       uses: actions/checkout@v4
@@ -55,6 +57,9 @@ jobs:
       with:
         name: PDFs
         path: output/**/*.pdf
+        prerelease: true
+        tag: pre-release
+        allowUpdates: true
 
     - name: Release PDFs
       if: github.event_name == 'release'
