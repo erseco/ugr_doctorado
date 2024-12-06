@@ -10,6 +10,16 @@
 \usepackage[bookmarks=false]{hyperref}
 \usepackage{balance}
 
+% Marca de agua de Borrador
+\usepackage{draftwatermark}
+\SetWatermarkText{BORRADOR}
+\SetWatermarkScale{0.9}
+\SetWatermarkColor[gray]{0.85} % Color más claro
+\SetWatermarkAngle{55}
+
+
+
+
 \usepackage[backend=bibtex, style=ieee]{biblatex} % Uso de biblatex con biber y estilo IEEE
 \addbibresource{../../bibliography/references.bib} % Ruta a tu archivo .bib
 

@@ -13,6 +13,13 @@ numbersections: true
   # pdf_document:
     # toc: true
     # number_sections: true
+header-includes:
+  - \usepackage{xcolor}
+  - \usepackage{draftwatermark}
+  - \SetWatermarkText{BORRADOR}
+  - \SetWatermarkScale{0.9}
+  - \SetWatermarkColor[gray]{0.85} % Color más claro
+  - \SetWatermarkAngle{55}
 ---
 
 
