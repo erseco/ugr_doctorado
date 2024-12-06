@@ -71,31 +71,39 @@ prepare:
 thesis: prepare $(THESIS_PDF)
 
 # Find Rmd files in thesis
-THESIS_RMD := $(wildcard thesis/*.Rmd)
-THESIS_TEX := $(patsubst thesis/%.Rmd, thesis/%.tex, $(THESIS_RMD))
+# THESIS_RMD := $(wildcard thesis/*.Rmd)
+# THESIS_TEX := $(patsubst thesis/%.Rmd, thesis/%.tex, $(THESIS_RMD))
 
-# Find Rmd files in thesis chapters
-THESIS_CHAPTERS_RMD := $(wildcard thesis/chapters/*.Rmd)
-THESIS_CHAPTERS_TEX := $(patsubst thesis/chapters/%.Rmd, thesis/chapters/%.tex, $(THESIS_CHAPTERS_RMD))
+# # Find Rmd files in thesis chapters
+# THESIS_CHAPTERS_RMD := $(wildcard thesis/chapters/*.Rmd)
+# THESIS_CHAPTERS_TEX := $(patsubst thesis/chapters/%.Rmd, thesis/chapters/%.tex, $(THESIS_CHAPTERS_RMD))
 
-# Convert Rmd files to tex
-thesis/%.tex: thesis/%.Rmd
-	@echo "Rendering $< to $@..."
-	@$(R_SCRIPT) -e "knitr::knit('$<', output = '$@')"
+# # Convert Rmd files to tex
+# thesis/%.tex: thesis/%.Rmd
+# 	@echo "Rendering $< to $@..."
+# 	@$(R_SCRIPT) -e "knitr::knit('$<', output = '$@')"
 
-thesis/chapters/%.tex: thesis/chapters/%.Rmd
-	@echo "Rendering $< to $@..."
-	@$(R_SCRIPT) -e "knitr::knit('$<', output = '$@')"
+# thesis/chapters/%.tex: thesis/chapters/%.Rmd
+# 	@echo "Rendering $< to $@..."
+# 	@$(R_SCRIPT) -e "knitr::knit('$<', output = '$@')"
 
-# Build thesis PDF
-$(THESIS_PDF): $(THESIS_TEX) $(THESIS_CHAPTERS_TEX) $(THESIS_TEX)
+# # Build thesis PDF
+# $(THESIS_PDF): $(THESIS_TEX) $(THESIS_CHAPTERS_TEX) $(THESIS_TEX)
+# 	@mkdir -p $(OUTPUT_DIR)
+# 	@echo "Compiling thesis..."
+# 	@tectonic -o $@ $(THESIS_TEX)
+# 	@echo "Thesis compiled: $@"
+
+
+# Build Thesis
+thesis: prepare $(THESIS_PDF)
+
+$(THESIS_PDF): $(THESIS_TEX)
 	@mkdir -p $(OUTPUT_DIR)
-	@echo "Compiling thesis..."
-	@tectonic -o $@ $(THESIS_TEX)
-	@echo "Thesis compiled: $@"
-
-
-
+	@echo "Compiling thesis with Tectonic..."
+	@tectonic $(THESIS_TEX)
+	@mv thesis/thesis.pdf $(THESIS_PDF)
+	@echo "Thesis compiled successfully and moved to $(OUTPUT_DIR)."
 # ----------------------------
 # ----------------------------
 # Build Project
@@ -209,10 +217,10 @@ deps-deb:
 clean:
 	@echo "Cleaning temporary and output files..."
 	@rm -rf $(OUTPUT_DIR)
-	@find thesis/ -name "*.aux" -o -name "*.lof" -o -name "*.log" -o -name "*.lol" \
-		-o -name "*.lot" -o -name "*.out" -o -name "*.synctex.gz" -o -name "*.toc" \
-		-o -name "*.run.xml" -o -name "*.bbl" -o -name "*.bcf" -o -name "*.blg" | xargs rm -f
-	@find thesis/ -name "*.tex" -o -name "*.pdf" -o -name "*.md" | xargs rm -f
+# 	@find thesis/ -name "*.aux" -o -name "*.lof" -o -name "*.log" -o -name "*.lol" \
+# 		-o -name "*.lot" -o -name "*.out" -o -name "*.synctex.gz" -o -name "*.toc" \
+# 		-o -name "*.run.xml" -o -name "*.bbl" -o -name "*.bcf" -o -name "*.blg" | xargs rm -f
+# 	@find thesis/ -name "*.tex" -o -name "*.pdf" -o -name "*.md" | xargs rm -f
 
 # Help menu
 help:
