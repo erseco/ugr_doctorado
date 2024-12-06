@@ -9,7 +9,6 @@
 ###############################################################################
 
 # Variables
-R_SCRIPT := Rscript
 SPELLCHECK := aspell
 OUTPUT_DIR := output
 ZOTERO_BIB_URL := https://api.zotero.org/groups/5784268/items/top?format=biblatex
@@ -23,8 +22,8 @@ THESIS_PDF := $(OUTPUT_DIR)/thesis.pdf
 # Default target
 .DEFAULT_GOAL := help
 
-# Build everything TO-DO!!# Add thesis when it is finished!
-all: check-dependencies update-bib project papers slides
+# Build everything 
+all: check-dependencies update-bib project papers thesis slides
 
 # Verify dependencies
 check-dependencies: check-r check-tectonic check-spellcheck check-marp
@@ -67,50 +66,45 @@ prepare:
 
 # ----------------------------
 # ----------------------------
-# Build Thesis (UNDER CONSTRUCTION)
-thesis: prepare $(THESIS_PDF)
-
-# Find Rmd files in thesis
-# THESIS_RMD := $(wildcard thesis/*.Rmd)
-# THESIS_TEX := $(patsubst thesis/%.Rmd, thesis/%.tex, $(THESIS_RMD))
-
-# # Find Rmd files in thesis chapters
-# THESIS_CHAPTERS_RMD := $(wildcard thesis/chapters/*.Rmd)
-# THESIS_CHAPTERS_TEX := $(patsubst thesis/chapters/%.Rmd, thesis/chapters/%.tex, $(THESIS_CHAPTERS_RMD))
-
-# # Convert Rmd files to tex
-# thesis/%.tex: thesis/%.Rmd
-# 	@echo "Rendering $< to $@..."
-# 	@$(R_SCRIPT) -e "knitr::knit('$<', output = '$@')"
-
-# thesis/chapters/%.tex: thesis/chapters/%.Rmd
-# 	@echo "Rendering $< to $@..."
-# 	@$(R_SCRIPT) -e "knitr::knit('$<', output = '$@')"
-
-# # Build thesis PDF
-# $(THESIS_PDF): $(THESIS_TEX) $(THESIS_CHAPTERS_TEX) $(THESIS_TEX)
-# 	@mkdir -p $(OUTPUT_DIR)
-# 	@echo "Compiling thesis..."
-# 	@tectonic -o $@ $(THESIS_TEX)
-# 	@echo "Thesis compiled: $@"
-
-
 # Build Thesis
-thesis: prepare $(THESIS_PDF)
+thesis: prepare convert_chapters $(THESIS_PDF)
 
-$(THESIS_PDF): $(THESIS_TEX)
+# Variables para capítulos de la tesis
+THESIS_CHAPTERS_RNW := $(wildcard thesis/chapters/*.Rnw)
+THESIS_CHAPTERS_RMD := $(wildcard thesis/chapters/*.Rmd)
+THESIS_CHAPTERS_TEX := $(patsubst thesis/chapters/%.Rnw, thesis/chapters/%.tex, $(THESIS_CHAPTERS_RNW)) \
+                       $(patsubst thesis/chapters/%.Rmd, thesis/chapters/%.tex, $(THESIS_CHAPTERS_RMD))
+
+# Convertir archivos .Rnw a .tex
+thesis/chapters/%.tex: thesis/chapters/%.Rnw
+	@echo "Converting $< to $@..."
+	@Rscript -e "knitr::knit('$<', output = '$@')"
+
+# Convertir archivos .Rmd a .tex
+thesis/chapters/%.tex: thesis/chapters/%.Rmd
+	@echo "Converting $< to $@..."
+	@Rscript -e "knitr::knit('$<', output = '$@')"
+
+# Convertir todos los capítulos necesarios
+convert_chapters: $(THESIS_CHAPTERS_TEX)
+	@echo "All chapters converted to .tex."
+
+# Generar el PDF de la tesis
+$(THESIS_PDF): $(THESIS_TEX) $(THESIS_CHAPTERS_TEX)
 	@mkdir -p $(OUTPUT_DIR)
 	@echo "Compiling thesis with Tectonic..."
 	@tectonic $(THESIS_TEX)
 	@mv thesis/thesis.pdf $(THESIS_PDF)
 	@echo "Thesis compiled successfully and moved to $(OUTPUT_DIR)."
+
+
 # ----------------------------
 # ----------------------------
 # Build Project
 
 project: prepare
 	@echo "Rendering project..."
-	$(R_SCRIPT) -e "rmarkdown::render('project/project.Rmd', \
+	Rscript -e "rmarkdown::render('project/project.Rmd', \
 		output_file='project.pdf', \
 		output_format=rmarkdown::pdf_document(latex_engine=\"tectonic\"), \
 		quiet = FALSE)" || { \
@@ -197,7 +191,7 @@ deps-mac:
 	@brew install tectonic
 	@brew install aspell
 	@brew install marp-cli
-	@$(R_SCRIPT) -e "install.packages(c('rmarkdown', 'knitr', 'ggplot2', 'ggthemes'), repos='https://cloud.r-project.org')"
+	@Rscript -e "install.packages(c('rmarkdown', 'knitr', 'ggplot2', 'ggthemes'), repos='https://cloud.r-project.org')"
 
 # Install minimal dependencies on Debian
 deps-deb:
@@ -211,16 +205,12 @@ deps-deb:
 	@wget https://github.com/tectonic-typesetting/tectonic/releases/download/latest/tectonic-install.sh -O /tmp/tectonic-install.sh
 	@chmod +x /tmp/tectonic-install.sh
 	@sudo /tmp/tectonic-install.sh
-	@$(R_SCRIPT) -e "install.packages(c('rmarkdown', 'knitr', 'ggplot2', 'ggthemes'), repos='https://cloud.r-project.org')"
+	@Rscript -e "install.packages(c('rmarkdown', 'knitr', 'ggplot2', 'ggthemes'), repos='https://cloud.r-project.org')"
 
 # Clean generated files
 clean:
 	@echo "Cleaning temporary and output files..."
 	@rm -rf $(OUTPUT_DIR)
-# 	@find thesis/ -name "*.aux" -o -name "*.lof" -o -name "*.log" -o -name "*.lol" \
-# 		-o -name "*.lot" -o -name "*.out" -o -name "*.synctex.gz" -o -name "*.toc" \
-# 		-o -name "*.run.xml" -o -name "*.bbl" -o -name "*.bcf" -o -name "*.blg" | xargs rm -f
-# 	@find thesis/ -name "*.tex" -o -name "*.pdf" -o -name "*.md" | xargs rm -f
 
 # Help menu
 help:
