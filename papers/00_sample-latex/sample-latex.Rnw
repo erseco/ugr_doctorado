@@ -1,0 +1,112 @@
+\documentclass[conference]{IEEEtran} % -*- mode: LaTeX -*-
+\IEEEoverridecommandlockouts
+% The preceding line is only needed to identify funding in the first footnote. If that is unneeded, please comment it out.
+% \usepackage{cite}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{algorithmic}
+\usepackage{graphicx}
+\graphicspath{{figure/}}
+\usepackage{textcomp}
+\usepackage{xcolor}
+\usepackage[bookmarks=false]{hyperref}
+\usepackage{balance}
+\sloppy
+
+
+\usepackage[backend=bibtex, style=ieee]{biblatex} % Uso de biblatex con biber y estilo IEEE
+\addbibresource{../../bibliography/references.bib} % Ruta a tu archivo .bib
+
+% Configuración de knitr
+% Establecemos el path para las figuras y el dispositivo a PDF
+<<setup, cache=FALSE, echo=FALSE>>=
+library(knitr)
+library(ggplot2)
+library(ggthemes)
+
+opts_chunk$set(
+  fig.path = 'figure/',
+  dev = 'pdf',
+  fig.ext = 'pdf',
+  fig.align = 'center',
+  echo = TRUE,
+  message = FALSE,
+  warning = FALSE
+)
+@
+
+\title{Artículo de Ejemplo}
+\author{Ernesto Serrano}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+\tableofcontents
+
+\section{Introducción}
+
+Este es el contenido inicial del artículo de ejemplo. En este documento, se ilustra cómo incluir imágenes, fórmulas matemáticas y referencias bibliográficas utilizando Markdown.
+
+\section{Figura de Ejemplo}
+
+La Figura~\ref{fig:arquitectura} muestra una representación gráfica de la arquitectura propuesta para la defensa de objetivos móviles.
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=\linewidth]{../../images/sample4.jpg}
+    \caption{Arquitectura propuesta para la defensa de objetivos móviles.}
+    \label{fig:arquitectura}
+\end{figure}
+
+\section{Gráfico Generado con R}
+
+<<plot-example, fig.cap="Gráfico generado dinámicamente con R.">>=
+x <- seq(0, 10, by = 0.1)
+y <- sin(x)
+plot(x, y, type = "l", col = "blue", lwd = 2, main = "Seno de X")
+@
+
+\section{Fórmula Matemática}
+
+La ecuación fundamental que relaciona la energía con la masa es la siguiente:
+
+\[
+E = mc^2
+\]
+
+Esta fórmula es esencial en la teoría de la relatividad de Einstein.
+
+\section{Referencias}
+
+Según estudios recientes~\cite{serrano-collado_improving_2020}, se ha demostrado que la evolución de las configuraciones de servicio puede mejorar significativamente la defensa de objetivos móviles.
+
+\section{Objetivos}
+
+\begin{itemize}
+    \item Objetivo 1
+    \item Objetivo 2
+    \item Objetivo 3
+\end{itemize}
+
+\section{Formato}
+
+Esto es un texto con formato \textbf{negrita}, \textit{cursiva} y \underline{subrayado}.
+Aquí había algo \texttt{con código} y aquí sin él.
+
+\section{Ejemplo de Código}
+
+\begin{verbatim}
+function saludo() {
+    console.log("¡Hola, mundo!");
+}
+\end{verbatim}
+
+\section{Conclusión}
+
+Este artículo de ejemplo demuestra cómo estructurar un documento científico en Markdown, integrando elementos visuales, matemáticos y bibliográficos.
+
+\section{Bibliografía}
+
+\printbibliography
+
+\end{document}

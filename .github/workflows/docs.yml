@@ -33,6 +33,8 @@ jobs:
       with:
         cache-version: 2
         packages: |
+          any::ggplot2
+          any::ggthemes
           any::rmarkdown
           any::knitr
     
@@ -44,20 +46,11 @@ jobs:
       with:
         github-token: ${{ secrets.GITHUB_TOKEN }}
 
-  
-    # - name: Genera pdf de prueba
-    #   run: |
-    #     rmarkdown::render('sample.Rmd', output_format = rmarkdown::pdf_document(latex_engine = 'tectonic'), output_file = 'sample.pdf' )
-    #   shell: Rscript {0}        
-
-
-    # - run: docker run --rm -v $PWD:/workspace ghcr.io/marp-team/marp-cli:latest --version
-    # - run: npx @marp-team/marp-cli@latest --version
     - name: Set up Marp
       run: npm install -g @marp-team/marp-cli
 
     - name: Generate PDFs
-      run: make slides
+      run: make all
 
     - name: Upload PDFs to Pre-release
       if: github.event_name == 'push'

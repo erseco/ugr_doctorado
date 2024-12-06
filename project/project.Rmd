@@ -1,1 +1,98 @@
-index.md
+---
+title: "Proyecto de Investigación para la Tesis Doctoral"
+author: "Ernesto Serrano Collado"
+tutor: "Juan Julián Merelo Guervós"
+date: "`r Sys.Date()`"
+
+bibliography: ../bibliography/references.bib
+csl: ../bibliography/ieee.csl
+link-citations: true
+toc: true
+numbersections: true
+# output:
+  # pdf_document:
+    # toc: true
+    # number_sections: true
+---
+
+
+# Introducción
+
+La presente investigación busca explorar las **Tecnologías de la Información y la Comunicación** (TIC) aplicadas en el ámbito educativo, con un enfoque en la **Inteligencia Artificial**. Este proyecto será el marco inicial para el desarrollo de la tesis doctoral.
+
+## Objetivos
+
+1. Establecer una revisión exhaustiva del estado del arte sobre la aplicación de IA en entornos educativos.
+2. Diseñar un modelo experimental basado en IA para mejorar los procesos de aprendizaje.
+3. Evaluar el impacto del modelo en un entorno controlado.
+
+# Marco Teórico
+
+La base teórica se fundamentará en los trabajos recientes sobre aprendizaje automático (Machine Learning) y su impacto en la educación.
+
+Ejemplo de cita: Según **Goodfellow et al. (2016)**, el aprendizaje profundo ha revolucionado los sistemas de recomendación.
+
+# Metodología
+
+La metodología seguirá un enfoque mixto, dividiendo el proyecto en las siguientes fases:
+
+1. **Revisión bibliográfica:** Uso de herramientas como Zotero para organizar las referencias.
+2. **Implementación experimental:** Desarrollo de modelos con lenguajes como Python y R.
+3. **Análisis de resultados:** Evaluación mediante métricas específicas.
+
+```r
+# Código R de ejemplo
+x <- seq(-10, 10, by = 0.1)
+y <- sin(x)
+plot(x, y, type = "l", col = "blue", lwd = 2,
+     main = "Gráfica del Seno",
+     xlab = "Eje X",
+     ylab = "Eje Y")
+```
+
+# Resultados Esperados
+
+La siguiente gráfica es un ejemplo de cómo se representarán los resultados.
+
+```{r echo=FALSE, message=FALSE}
+# Generar una gráfica
+library(ggplot2)
+data <- data.frame(
+  x = rnorm(100),
+  y = rnorm(100)
+)
+ggplot(data, aes(x = x, y = y)) +
+  geom_point(color = "blue") +
+  labs(title = "Ejemplo de Gráfica con ggplot2",
+       x = "Variable X",
+       y = "Variable Y")
+```
+
+# Cronograma
+
+| Fase                   | Duración |ana      |
+|------------------------|----------|---------|
+| Revisión bibliográfica | 3 meses  |3 meses  |
+| Implementación         | 6 meses  |6 meses  |
+| Análisis               | 3 meses  |3 meses  |
+
+# Bibliografía
+
+Las referencias se gestionarán con el archivo `references.bib` y se incluirán al final del documento.
+
+## Sub Apartado nuevo
+
+Según estudios recientes [@serrano-collado_improving_2020], se ha demostrado que la evolución de las configuraciones de servicio puede mejorar significativamente la defensa de objetivos móviles.
+
+esto es donde yo voy a hablar de mi libro, porque lfkjasdñlfkjasñldfkjasñdflkjasd
+sdf.
+
+# Conclusiones
+
+Este proyecto establecerá las bases para el desarrollo de una **tesis doctoral sólida**, proporcionando un modelo innovador basado en tecnologías de inteligencia artificial para la mejora del aprendizaje.
+
+---
+
+# Referencias
+
+

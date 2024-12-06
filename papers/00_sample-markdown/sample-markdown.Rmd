@@ -21,7 +21,7 @@ Este es el contenido inicial del artículo de ejemplo. En este documento, se ilu
 
 La Figura 1 muestra una representación gráfica de la arquitectura propuesta para la defensa de objetivos móviles.
 
-![Arquitectura del Sistema](../../../images/sample4.jpg)
+![Arquitectura del Sistema](../../images/sample4.jpg)
 *Figura 1: Arquitectura propuesta para la defensa de objetivos móviles.*
 
 ## Gráfico Generado con R
