@@ -19,9 +19,16 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: write
+
     steps:
+
     - name: Checkout code
       uses: actions/checkout@v4
+
+    - name: Install aspell with Spanish dictionary
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y aspell aspell-es
 
     - name: Set up R
       uses: r-lib/actions/setup-r@v2

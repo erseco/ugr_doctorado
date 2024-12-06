@@ -195,7 +195,7 @@ deps-mac:
 deps-deb:
 	@sudo apt-get update
 	@sudo apt-get install -y r-base
-	@sudo apt-get install -y aspell
+	@sudo apt-get install -y aspell aspell-es
 	@sudo apt-get install -y npm
 	@sudo npm install -g @marp-team/marp-cli
 	@sudo apt-get install -y wget
