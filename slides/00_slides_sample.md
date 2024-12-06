@@ -18,7 +18,7 @@ section::before {
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%) rotate(-60deg);
+  transform: translate(-50%, -50%) rotate(-30deg);
   font-size: 5em;
   color: rgba(0, 0, 0, 0.1);
   z-index: 1; /* Debe estar detrás del contenido */
