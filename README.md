@@ -43,8 +43,8 @@ Generated PDFs will be located in the `output/` directory.
 ## **PhD Project Overview**
 
 ### **Topic: Moving Target Defense**  
-**Author:** Ernesto Serrano Collado  
-**Supervisor:** Juan Julián Merelo Guervós  
+**Author:** Ernesto Serrano Collado ([@erseco](https://github.com/erseco/)) 
+**Supervisor:** Juan Julián Merelo Guervós ([@JJ](https://github.com/jj/))
 
 This thesis explores adaptive cybersecurity strategies under the concept of Moving Target Defense (MTD). The full abstract will be disclosed in future updates.
 
