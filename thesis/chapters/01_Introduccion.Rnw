@@ -1,0 +1,122 @@
+\chapter{Introducción}
+
+% Configuración de knitr
+% Establecemos el path para las figuras y el dispositivo a PDF
+<<setup, echo=FALSE, include=FALSE>>=
+
+library(knitr)
+library(ggplot2)
+library(ggthemes)
+
+knitr::opts_chunk$set(
+  echo = TRUE,            # Mostrar código R en el documento
+  results = "asis",       # Insertar resultados directamente en LaTeX
+  dev = 'pdf',            # Generar gráficos en formato PDF
+  fig.align = 'center',   # Centrar los gráficos
+  message = FALSE,        # Ocultar mensajes
+  warning = FALSE,         # Ocultar advertencias
+  out.width = "100%",  # Ajustar ancho al 100% de la línea
+  out.extra = ""       # Evitar incluir \maxwidth  
+)
+@
+
+\section{Motivación}
+
+\bigskip
+Todo el código utilizado para la realización de este proyecto así como las diferentes herramientas tienen licencias de código abierto, tanto por motivación ideológica como por seguridad, ya que diversos estudios indican que el Software Libre es mucho mas seguro que el propietario \cite{walia_comparative_2006} \cite{mansfield-devine_open_2008} \cite{clark_is_2009}.
+
+
+\section{Definición del problema}
+
+Un atacante suele comenzar su ataque realizando un reconocimiento previo. Luego planea su ataque de acuerdo con la información que encuentra, por lo tanto, un cambio periódico en la configuración es una ingeniosa forma de hacer que su esfuerzo de reconocimiento no sea efectivo y ayudaría a prevenir un ataque a un costo relativamente bajo.
+
+\section{Estructura de la tesis}
+
+\bigskip
+Antes de pasar a detalles más técnicos, me gustaría detallar el contenido de esta tesis:
+
+\begin{itemize}
+  \item En el \textit{capítulo 1} (\textbf{Introducción}) se encuentra una breve introducción a nuestra idea, así como las motivaciones que nos han llevado a realizarla.
+  \item El \textit{capítulo 2} (\textbf{Objetivos}) define los objetivos que se quieren alcanzar con este proyecto.
+  \item En el \textit{capítulo 3} (\textbf{Antecedentes}) se analiza el estado de arte actual, así como algunas de las tecnologías y paradigmas que utilizaremos en nuestro proyecto.
+  \item En el \textit{capítulo 4} (\textbf{Metodología}) está la planificación y desarrollo de cada uno de los apartados del proyecto.
+  \item En el \textit{capítulo 5} (\textbf{Resultados})se detallan todos los resultados obtenidos.
+  \item En el \textit{capítulo 6} (\textbf{Conclusiones}) se pueden encontrar las conclusiones finales  así como las recomendaciones para futuros trabajos.
+
+\end{itemize}
+
+\bigskip
+Para finalizar se incluye un anexo con el código fuente desarrollado y liberado bajo la licencia libre GPLv3 \cite{free_software_foundation_gnu_2007}. Dicho código fuente también se puede encontrar en la url \url{https://github.com/erseco/moving_target_defense}.
+
+
+%
+% Ejemplos de codigo LaTeX para uso futuro
+%
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=1.0\textwidth]{../images/sample1}
+\caption{Sample Image 1}
+\label{fig:sample1}
+\end{figure}
+
+Esto es un texto con una nota\footnote{Ejemplo de nota al pie} al pie.
+
+Y esto es una ``Frase de alguien'' (\cite{john_evolutionary_2014}).
+
+\begin{itemize}
+  \item \textbf{1.} Texto de ejemplo
+  \item \textbf{2.} Texto de ejemplo
+  \item \textbf{3.} Texto de ejemplo
+  \item \textbf{4.} Texto de ejemplo
+
+\end{itemize}
+
+\begin{enumerate}
+	\item Ejemplo 1.
+	\item Ejemplo 2.
+\end{enumerate}
+
+\begin{lstlisting}[language=html]
+<!DOCTYPE html>
+<html lang="es-ES">
+  <head>
+    <meta charset="utf-8">
+    <title>Ejemplo de 2 párrafos</title>
+  </head>
+  <body>
+    <p>Esto es un párrafo.</p>
+    <p>Esto es otro párrafo.</p>
+  </body>
+</html>
+\end{lstlisting}
+
+Puedes verlo en \cite{merelo-guervos_comparison_2016}. Te recomiendo leer \cite{clark_is_2009, zhang_genetic_2009, schlenker_deceiving_2018, gensch_evolving_2016}.
+
+
+\section{Gráfico generado en R}
+
+El siguiente gráfico es generado directamente desde R dentro de este documento:
+
+<<grafico-simple, echo=FALSE, fig.cap="Ejemplo de gráfico generado en knitr", fig.width=6, fig.height=4>>=
+library(ggplot2)
+
+# Crear un conjunto de datos simple
+data <- data.frame(
+  x = c(1, 2, 3, 4, 5),
+  y = c(3, 5, 2, 8, 7),
+  group = c("A", "B", "A", "B", "A")
+)
+
+# Crear y mostrar el gráfico
+ggplot(data, aes(x = x, y = y, color = group)) +
+  geom_point(size = 3) +
+  labs(
+    title = "Ejemplo de gráfico simple",
+    x = "Eje X",
+    y = "Eje Y",
+    color = "Grupo"
+  ) +
+  theme_minimal()
+@
+

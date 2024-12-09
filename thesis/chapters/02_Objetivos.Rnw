@@ -1,5 +1,27 @@
 \chapter{Objetivos}
 
+% Configuración de knitr
+% Establecemos el path para las figuras y el dispositivo a PDF
+<<setup, echo=FALSE, include=FALSE>>=
+
+library(knitr)
+library(ggplot2)
+library(ggthemes)
+
+knitr::opts_chunk$set(
+  echo = TRUE,            # Mostrar código R en el documento
+  results = "asis",       # Insertar resultados directamente en LaTeX
+  fig.path = 'figure/', # Ruta para las figuras generadas
+  dev = 'pdf',            # Generar gráficos en formato PDF
+  fig.align = 'center',   # Centrar los gráficos
+  message = FALSE,        # Ocultar mensajes
+  warning = FALSE,         # Ocultar advertencias
+  out.width = "100%",  # Ajustar ancho al 100% de la línea
+  out.extra = ""       # Evitar incluir \maxwidth  
+)
+@
+
+
 Los objetivos de este proyecto son prevenir ataques informáticos utilizando la técnica del `objetivo móvil', comprobar si utilizar una heurística de búsqueda, como pueden ser los algoritmos genéticos, puede servir para generar de forma automatizada las distintas configuraciones con la suficiente diversidad atendiendo también a la seguridad del sistema a la hora de generar dichas configuraciones.
 
 \bigskip
@@ -33,3 +55,29 @@ Destacar en los aspectos formativos previos más utilizados para el desarrollo d
 \bigskip
 Para la realización de cada una de las partes se han usado multitud de herramientas específicas tales como \texttt{LaTeX}, \texttt{Zotero}, \texttt{Docker} \texttt{Git} y \texttt{OWASP ZAP} entre otras.
 
+
+\section{Otro gráfico generado en R}
+
+El siguiente gráfico es generado directamente desde R dentro de este documento:
+
+<<otro-grafico-simple, echo=FALSE, fig.cap="Ejemplo de gráfico generado en knitr", fig.width=6, fig.height=4>>=
+library(ggplot2)
+
+# Crear un conjunto de datos simple
+data <- data.frame(
+  x = c(1, 2, 3, 4, 5),
+  y = c(3, 5, 2, 8, 7),
+  group = c("A", "B", "A", "B", "A")
+)
+
+# Crear y mostrar el gráfico
+ggplot(data, aes(x = x, y = y, color = group)) +
+  geom_point(size = 3) +
+  labs(
+    title = "Ejemplo de gráfico simple",
+    x = "Eje X",
+    y = "Eje Y",
+    color = "Grupo"
+  ) +
+  theme_minimal()
+@

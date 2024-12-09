@@ -13,8 +13,6 @@ SPELLCHECK := aspell
 OUTPUT_DIR := output
 ZOTERO_BIB_URL := https://api.zotero.org/groups/5784268/items/top?format=biblatex
 BIB_FILE := bibliography/references.bib
-THESIS_TEX := thesis/thesis.tex
-THESIS_PDF := $(OUTPUT_DIR)/thesis.pdf
 
 # Main rules
 .PHONY: all project papers slides thesis clean lint update-bib check-dependencies help
@@ -67,35 +65,51 @@ prepare:
 # ----------------------------
 # ----------------------------
 # Build Thesis
-thesis: prepare convert_chapters $(THESIS_PDF)
+thesis: prepare convert_chapters $(OUTPUT_DIR)/thesis.pdf clean_generated_tex
 
-# Variables para capítulos de la tesis
+# Variables for .tex generation
 THESIS_CHAPTERS_RNW := $(wildcard thesis/chapters/*.Rnw)
 THESIS_CHAPTERS_RMD := $(wildcard thesis/chapters/*.Rmd)
 THESIS_CHAPTERS_TEX := $(patsubst thesis/chapters/%.Rnw, thesis/chapters/%.tex, $(THESIS_CHAPTERS_RNW)) \
                        $(patsubst thesis/chapters/%.Rmd, thesis/chapters/%.tex, $(THESIS_CHAPTERS_RMD))
 
-# Convertir archivos .Rnw a .tex
+# Convert .Rnw to .tex
 thesis/chapters/%.tex: thesis/chapters/%.Rnw
 	@echo "Converting $< to $@..."
-	@Rscript -e "knitr::knit('$<', output = '$@')"
+	@Rscript -e "setwd('$(dir $<)'); knitr::knit('$(notdir $<)')"
+# 	@Rscript -e "setwd('$(dir $<)../'); knitr::knit('../$<')"
+# 	@Rscript -e "setwd('thesis'); knitr::knit('../$<)')"
 
-# Convertir archivos .Rmd a .tex
-thesis/chapters/%.tex: thesis/chapters/%.Rmd
-	@echo "Converting $< to $@..."
-	@Rscript -e "knitr::knit('$<', output = '$@')"
+# @Rscript -e "setwd('$(dir $<)'); knitr::knit('$(notdir $<)')"
+	
 
-# Convertir todos los capítulos necesarios
+# Convert .Rmd to .tex (DISABLED because knitr can't generate .tex from .Rmd yet)
+# thesis/chapters/%.tex: thesis/chapters/%.Rmd
+# 	@echo "Converting $< to $@..."
+# 	@Rscript -e "setwd('$(dir $<)'); knitr::opts_knit$$set(out.format = 'latex'); knitr::knit(input = '$(notdir $<)', output = '$(notdir $@)')"
+
+
+# Convert all chapters
 convert_chapters: $(THESIS_CHAPTERS_TEX)
 	@echo "All chapters converted to .tex."
+	@echo "Moving chapter figures directory to parent before generating full PDF."
+	@test -d thesis/chapters/figure && mv thesis/chapters/figure thesis/ || true
 
-# Generar el PDF de la tesis
-$(THESIS_PDF): $(THESIS_TEX) $(THESIS_CHAPTERS_TEX)
+# Generate thesis.pdf
+$(OUTPUT_DIR)/thesis.pdf: thesis/thesis.tex $(THESIS_CHAPTERS_TEX)
 	@mkdir -p $(OUTPUT_DIR)
 	@echo "Compiling thesis with Tectonic..."
-	@tectonic $(THESIS_TEX)
-	@mv thesis/thesis.pdf $(THESIS_PDF)
-	@echo "Thesis compiled successfully and moved to $(OUTPUT_DIR)."
+	@tectonic thesis/thesis.tex
+	@mv thesis/thesis.pdf $(OUTPUT_DIR)/thesis.pdf
+	@echo "Thesis compiled successfully and moved to $(OUTmaPUT_DIR)."
+
+# Clean Knitr generated .tex
+clean_generated_tex:
+	@echo "Cleaning up temporary .tex files..."
+	@rm -f $(THESIS_CHAPTERS_TEX)
+	@echo "Temporary .tex files removed."
+	@echo "Cleaning up temporary figure files..."
+	@rm -rf thesis/figure
 
 
 # ----------------------------
@@ -141,6 +155,8 @@ papersnw: prepare-papers $(PDFSNW)
 %.pdf: %.tex
 	tectonic $<
 	mv $@ $(OUTPUT_DIR)/papers/
+	@echo "Cleaning up temporary figure files..."
+	@rm -rf $(dir $<)figure
 
 
 
@@ -161,6 +177,9 @@ papersmd: prepare-papers $(PDFSMD)
 		exit 1; \
 	}
 	mv $(basename $<).pdf $(OUTPUT_DIR)/papers/
+
+$(dir $<)
+
 
 # ----------------------------
 # ----------------------------
