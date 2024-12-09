@@ -52,3 +52,5 @@ Thumbs.db
 .VolumeIcon.icns
 .icon
 .fseventsd
+.aider*
+.env
