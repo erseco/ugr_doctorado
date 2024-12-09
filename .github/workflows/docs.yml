@@ -61,7 +61,7 @@ jobs:
 
     - name: Upload PDFs to Pre-release
       if: github.event_name == 'push'
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: PDFs
         path: output/**/*.pdf
