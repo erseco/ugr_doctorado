@@ -19,6 +19,7 @@
 
 # Ignore output PDFs
 output/
+tools/
 
 # Ignore temporary files
 *.tmp
