@@ -33,6 +33,12 @@ jobs:
       - name: Install Node dependencies
         run: npm install
 
+      - name: Set up Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
       - name: Install aspell with Spanish dictionary
         run: |
           sudo apt-get update
@@ -64,6 +70,11 @@ jobs:
       - name: Set up Marp
         run: npm install -g @marp-team/marp-cli
 
+      - name: Install TeXtidote
+        run: |
+          mkdir -p tools
+          curl -sSL https://github.com/sylvainhalle/textidote/releases/download/v0.8.3/textidote.jar -o tools/textidote.jar
+
       - name: Install LibreOffice (headless) + fonts
         run: |
           sudo apt-get update
@@ -74,7 +85,11 @@ jobs:
       - name: Generate PDFs
         run: make all
 
-      - name: Archive outputs (PDFs & docx)
+      - name: Run TeXtidote checks
+        run: make textidote
+        continue-on-error: true
+
+      - name: Archive outputs (PDFs, docx, reports)
         if: github.event_name == 'push'
         uses: actions/upload-artifact@v4
         with:
@@ -82,6 +97,8 @@ jobs:
           path: |
             output/**/*.pdf
             output/**/*.docx
+            output/textidote/**/*.txt
+          if-no-files-found: warn
 
       - name: Build metadata
         id: meta
@@ -94,6 +111,7 @@ jobs:
           artifacts: |
             output/**/*.pdf
             output/**/*.docx
+            output/textidote/**/*.txt
           token: ${{ secrets.GITHUB_TOKEN }}
           prerelease: true
           tag: pre-release
@@ -106,7 +124,10 @@ jobs:
         if: github.event_name == 'release'
         uses: ncipollo/release-action@v1
         with:
-          artifacts: 'output/**/*.pdf'
+          artifacts: |
+            output/**/*.pdf
+            output/**/*.docx
+            output/textidote/**/*.txt
           token: ${{ secrets.GITHUB_TOKEN }}
           tag: ${{ github.event.release.tag_name }}
           allowUpdates: true
