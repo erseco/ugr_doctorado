@@ -57,7 +57,7 @@ jobs:
         uses: r-lib/actions/setup-pandoc@v2
 
       - name: Set up Tectonic
-        uses: wtfjoke/setup-tectonic@v3
+        uses: wtfjoke/setup-tectonic@v4
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
 
