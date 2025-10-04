@@ -31,7 +31,7 @@ jobs:
           package-manager-cache: false
 
       - name: Install Node dependencies
-        run: npm ci
+        run: npm install
 
       - name: Install aspell with Spanish dictionary
         run: |
