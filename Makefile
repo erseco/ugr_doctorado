@@ -30,17 +30,17 @@ bibliography update-bib:
 thesis:
 	@$(MAKE) -C thesis pdf
 
-project:
+project: check-node check-soffice
 	@$(MAKE) -C project pdf
 
 papers:
 	@$(MAKE) -C papers pdf
 
-slides:
+slides: check-marp
 	@$(MAKE) -C slides pdf
 
 # Dependency checks
-check-dependencies: check-r check-tectonic check-spellcheck check-marp
+check-dependencies: check-node check-r check-tectonic check-spellcheck
 
 check-node:
 	@command -v node >/dev/null 2>&1 || { echo "Error: Node.js is not installed."; exit 1; }
