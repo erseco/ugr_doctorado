@@ -4,15 +4,15 @@ on:
   push:
     paths:
       - '.github/workflows/docs.yml'
+      - 'bibliography/**'
       - 'papers/**'
       - 'thesis/**'
       - 'slides/**'
       - 'project/**'
       - 'Makefile'
   release:
-    types:
-      - created
-      - edited
+    types: [created, edited]
+  workflow_dispatch:
 
 jobs:
   build:
@@ -21,64 +21,82 @@ jobs:
       contents: write
 
     steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
 
-    - name: Checkout code
-      uses: actions/checkout@v4
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
 
-    - name: Install aspell with Spanish dictionary
-      run: |
-        sudo apt-get update
-        sudo apt-get install -y aspell aspell-es
+      - name: Install Node dependencies
+        run: npm ci
 
-    - name: Set up R
-      uses: r-lib/actions/setup-r@v2
-      with:
-        use-public-rspm: true
+      - name: Install aspell with Spanish dictionary
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y aspell aspell-es
 
-    - name: Install packages
-      uses: r-lib/actions/setup-r-dependencies@v2
-      with:
-        cache-version: 2
-        packages: |
-          any::ggplot2
-          any::ggthemes
-          any::rmarkdown
-          any::knitr
-    
-    - name: Setup Pandoc
-      uses: r-lib/actions/setup-pandoc@v2
+      - name: Set up R
+        uses: r-lib/actions/setup-r@v2
+        with:
+          use-public-rspm: true
 
-    - name: Set up Tectonic
-      uses: wtfjoke/setup-tectonic@v3
-      with:
-        github-token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Install R packages
+        uses: r-lib/actions/setup-r-dependencies@v2
+        with:
+          cache-version: 2
+          packages: |
+            any::ggplot2
+            any::ggthemes
+            any::rmarkdown
+            any::knitr
 
-    - name: Set up Marp
-      run: npm install -g @marp-team/marp-cli
+      - name: Setup Pandoc
+        uses: r-lib/actions/setup-pandoc@v2
 
-    - name: Generate PDFs
-      run: make all
+      - name: Set up Tectonic
+        uses: wtfjoke/setup-tectonic@v3
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
 
-    - name: Upload PDFs to Pre-release
-      if: github.event_name == 'push'
-      uses: actions/upload-artifact@v4
-      with:
-        name: PDFs
-        path: output/**/*.pdf
+      - name: Set up Marp
+        run: npm install -g @marp-team/marp-cli
 
-    - name: Pre-Release PDFs
-      if: github.event_name == 'push'
-      uses: ncipollo/release-action@v1
-      with:
-        artifacts: 'output/**/*.pdf'
-        token: ${{ secrets.GITHUB_TOKEN }}
-        prerelease: true
-        tag: pre-release
-        allowUpdates: true
+      - name: Generate PDFs
+        run: make all
 
-    - name: Release PDFs
-      if: github.event_name == 'release'
-      uses: ncipollo/release-action@v1
-      with:
-        artifacts: 'output/**/*.pdf'
-        token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Archive PDFs
+        if: github.event_name == 'push'
+        uses: actions/upload-artifact@v4
+        with:
+          name: pdfs
+          path: output/**/*.pdf
+
+      - name: Build metadata
+        id: meta
+        run: echo "timestamp=$(date -u +'%Y-%m-%d %H:%M:%SZ')" >> "$GITHUB_OUTPUT"
+
+      - name: Update pre-release with PDFs
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        uses: ncipollo/release-action@v1
+        with:
+          artifacts: 'output/**/*.pdf'
+          token: ${{ secrets.GITHUB_TOKEN }}
+          prerelease: true
+          tag: pre-release
+          name: "Pre-release docs - ${{ steps.meta.outputs.timestamp }}"
+          body: "Automated documentation build executed at ${{ steps.meta.outputs.timestamp }} (UTC)."
+          allowUpdates: true
+          removeArtifacts: true
+
+      - name: Attach PDFs to official release
+        if: github.event_name == 'release'
+        uses: ncipollo/release-action@v1
+        with:
+          artifacts: 'output/**/*.pdf'
+          token: ${{ secrets.GITHUB_TOKEN }}
+          tag: ${{ github.event.release.tag_name }}
+          allowUpdates: true
+          removeArtifacts: true

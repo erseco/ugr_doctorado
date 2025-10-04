@@ -1,0 +1,46 @@
+{
+  "plan_type": "Lorem ipsum dolor sit amet",
+  "title": "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
+  
+  "line": "Lorem ipsum",
+  "keywords": "lorem; ipsum; dolor; sit; amet",
+  "background": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod nunc non ex convallis, ac ultrices purus malesuada. Integer ultricies justo ut nunc finibus, sit amet posuere nunc faucibus. Proin ac lacus id leo maximus blandit. Cras ac tortor at dui imperdiet elementum. Donec vel felis sit amet erat convallis finibus.",
+  
+  "hypothesis": "H1. Lorem ipsum dolor sit amet, consectetur adipiscing elit.\nH2. Vivamus vehicula ligula et lectus consequat, in ultricies sem interdum.\nH3. Phasellus mattis risus at lorem fermentum, ut porta nisl aliquam.\nJustificación: Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+  
+  "objectives": "Objetivo general:\n  Lorem ipsum dolor sit amet, consectetur adipiscing elit.\n\nObjetivos específicos:\nO1. Lorem ipsum dolor sit amet.\nO2. Consectetur adipiscing elit.\nO3. Sed do eiusmod tempor incididunt.\nO4. Ut labore et dolore magna aliqua.\nO5. Ut enim ad minim veniam.\nO6. Quis nostrud exercitation ullamco.\nO7. Laboris nisi ut aliquip ex ea commodo consequat.",
+  
+  "methodology": "Enfoque: Lorem ipsum dolor sit amet, consectetur adipiscing elit.\nFuentes de datos: Lorem ipsum dolor sit amet, consectetur adipiscing elit.\nIntervenciones clave: Lorem ipsum dolor sit amet, consectetur adipiscing elit.\nValidez y ética: Lorem ipsum dolor sit amet, consectetur adipiscing elit.\nResultados esperados: Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+  
+  "planning": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer feugiat metus at risus malesuada, at feugiat turpis varius. In ut ante non lacus rhoncus viverra.",
+  "timeline": [
+    { "activity": "Lorem ipsum Q1–Q2", "y1": "Q1–Q2", "y2": "", "y3": "" },
+    { "activity": "Dolor sit amet", "y1": "Q1–Q3", "y2": "", "y3": "" },
+    { "activity": "Consectetur adipiscing elit", "y1": "Q2–Q3", "y2": "", "y3": "" },
+    { "activity": "Sed do eiusmod tempor", "y1": "Q2–Q4", "y2": "Q1", "y3": "" },
+    { "activity": "Ut labore et dolore", "y1": "Q4", "y2": "", "y3": "" }
+  ],
+  
+  "resources": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis ac magna vel dolor vehicula volutpat. Nullam sed velit in ex posuere facilisis. Fusce a ligula sed sapien viverra sodales. Nulla facilisi. In hac habitasse platea dictumst.",
+  
+  "papers": [
+    {
+      "title": "Lorem ipsum dolor sit amet",
+      "angle": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+    },
+    {
+      "title": "Consectetur adipiscing elit",
+      "angle": "Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+    },
+    {
+      "title": "Ut enim ad minim veniam",
+      "angle": "Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+    }
+  ],
+  
+  "references_keys": [
+    "raymond_cathedral_1999",
+    "merelo-guervos_comparison_2016",
+    "serrano-collado_improving_2020"
+  ]
+}
