@@ -64,15 +64,24 @@ jobs:
       - name: Set up Marp
         run: npm install -g @marp-team/marp-cli
 
+      - name: Install LibreOffice (headless) + fonts
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y \
+            libreoffice \
+            fonts-dejavu fonts-liberation
+
       - name: Generate PDFs
         run: make all
 
-      - name: Archive PDFs
+      - name: Archive outputs (PDFs & docx)
         if: github.event_name == 'push'
         uses: actions/upload-artifact@v4
         with:
-          name: pdfs
-          path: output/**/*.pdf
+          name: outputs
+          path: |
+            output/**/*.pdf
+            output/**/*.docx
 
       - name: Build metadata
         id: meta
@@ -82,7 +91,9 @@ jobs:
         if: github.event_name == 'push' && github.ref == 'refs/heads/main'
         uses: ncipollo/release-action@v1
         with:
-          artifacts: 'output/**/*.pdf'
+          artifacts: |
+            output/**/*.pdf
+            output/**/*.docx
           token: ${{ secrets.GITHUB_TOKEN }}
           prerelease: true
           tag: pre-release

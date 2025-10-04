@@ -17,7 +17,8 @@ SPELLCHECK ?= aspell
 export ROOT_DIR OUTPUT_DIR ZOTERO_BIB_URL BIB_FILE SPELLCHECK
 
 .PHONY: all bibliography thesis project papers slides clean lint update-bib \
-	check-dependencies check-r check-tectonic check-spellcheck check-marp help
+	check-dependencies check-node check-r check-tectonic check-spellcheck \
+	check-marp check-soffice help
 
 .DEFAULT_GOAL := help
 
@@ -41,6 +42,10 @@ slides:
 # Dependency checks
 check-dependencies: check-r check-tectonic check-spellcheck check-marp
 
+check-node:
+	@command -v node >/dev/null 2>&1 || { echo "Error: Node.js is not installed."; exit 1; }
+	@command -v npm >/dev/null 2>&1 || { echo "Error: npm is not installed."; exit 1; }
+
 check-r:
 	@command -v Rscript >/dev/null 2>&1 || { \
 		echo "Error: R is not installed. Please install it."; \
@@ -62,6 +67,11 @@ check-spellcheck:
 check-marp:
 	@command -v marp >/dev/null 2>&1 || { \
 		echo "Error: marp is not installed. Please install it."; \
+		exit 1; \
+	}
+
+check-soffice:
+	@command -v soffice >/dev/null 2>&1 || { echo "ERROR: 'soffice' is not installed. Please install it."; \
 		exit 1; \
 	}
 
@@ -89,7 +99,9 @@ help:
 	@echo "  clean         - Remove generated artifacts"
 	@echo ""
 	@echo "Dependency helpers:"
+	@echo "  check-node"
 	@echo "  check-r"
 	@echo "  check-tectonic"
 	@echo "  check-spellcheck"
 	@echo "  check-marp"
+	@echo "  check-soffice"
