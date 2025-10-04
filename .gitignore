@@ -32,6 +32,7 @@ output/
 # Ignore backup files created by editors
 *.sav
 *.backup
+~*
 
 # Ignore directories created by LaTeX editors
 _texbuild/
@@ -52,3 +53,13 @@ Thumbs.db
 .VolumeIcon.icns
 .icon
 .fseventsd
+.aider*
+.env
+
+
+package-lock.json
+
+
+project/project.docx
+project/project.pdf
+node_modules/

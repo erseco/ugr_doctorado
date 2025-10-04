@@ -1,0 +1,21 @@
+{
+  "name": "project",
+  "version": "1.0.0",
+  "description": "",
+  "main": "generate.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "@citation-js/core": "^0.7.15",
+    "@citation-js/plugin-bibtex": "^0.7.15",
+    "@citation-js/plugin-csl": "^0.7.15",    
+    "docxtemplater": "^3.66.0",
+    "libreoffice-convert": "^1.6.1",
+    "pizzip": "^3.2.0"
+  }
+}
