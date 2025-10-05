@@ -10,6 +10,14 @@ on:
       - 'slides/**'
       - 'project/**'
       - 'Makefile'
+  pull_request:
+    paths:
+      - 'bibliography/**'
+      - 'papers/**'
+      - 'thesis/**'
+      - 'slides/**'
+      - 'project/**'
+      - 'Makefile'
   release:
     types: [created, edited]
   workflow_dispatch:
