@@ -5,7 +5,7 @@ BIB_FILE ?= $(ROOT_DIR)/bibliography/references.bib
 RUNNODE ?= node
 GENERATOR := generate.js
 PROJECT_TEMPLATE := project_template.docx
-DATA_FILE := data.json
+DATA_FILE := data.yaml
 DOCX_OUT := $(PROJECT_OUTPUT_DIR)/project.docx
 PDF_OUT := $(PROJECT_OUTPUT_DIR)/project.pdf
 

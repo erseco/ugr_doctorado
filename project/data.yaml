@@ -1,0 +1,150 @@
+---
+
+# Se seguirá el siguiente esquema y en ningún caso se utilizarán más de 3000 palabras en la memoria 
+# (en esta cantidad no se cuentan las referencias bibliográficas)
+
+plan_type: "Primer Plan de Investigación presentado"
+
+#! Título del Plan de Investigación.
+title: >
+  De la catedral al bazar: Modernización de eXeLearning mediante DevOps,
+  integración continua y buenas prácticas de desarrollo en un proyecto educativo de código abierto.
+
+line: "Soft Computing"
+
+keywords:
+  - DevOps
+  - Integración continua
+  - Calidad de software
+  - Recursos educativos abiertos
+
+# Antecedentes. Incluir los antecedentes y situación actual en el tema de la tesis. 
+background: >
+    eXeLearning es una herramienta de autor de código abierto para la creación de recursos educativos interactivos y su exportación en formatos estándar (SCORM, etc.) con una base de usuarios consolidada y ampliamente utilizada para la creación de Recursos Educativos Abiertos (REA) [1], [2], [3]. Nacida con financiación pública, su desarrollo inicial fue impulsado por instituciones como el INTEF y coordinado por el CEDEC, siguiendo un modelo centralizado similar a la "catedral" de Raymond [4]: un proyecto estable, construido por un grupo definido de actores.
+
+    Sin embargo, el proyecto alcanzó una doble crisis. Por un lado, una obsolescencia tecnológica severa, con una base de código en Python 2 que llegó al final de su vida útil. Por otro, una crisis de gobernanza: un intento de modernización institucional en 2021 [5] resultó en un fracaso contractual: la entrega estuvo marcada por un código incompleto, lleno de errores y sin una arquitectura coherente provocando la desvinculación de socios clave. Este colapso forzó una transición radical: de la "catedral" institucional a un "bazar" donde voluntarios de diferentes Comunidades Autónomas asumieron la responsabilidad de rescatar el proyecto.
+
+    Este escenario plantea un reto socio-técnico que se puede analizar a través de tres marcos conceptuales. Primero, la "paradoja de Teseo", ya que la modernización implica reemplazar casi la totalidad del código, cuestionando la identidad del software mientras se preserva su nombre y propósito. Segundo, la estrategia para esta sustitución incremental se alinea con el "Strangler Fig Pattern" [6], un enfoque de ingeniería de software donde una nueva aplicación "estrangula" gradualmente al sistema legado hasta reemplazarlo por completo.
+
+    Finalmente, desde la perspectiva del Soft Computing, la nueva comunidad de desarrollo se comporta como un sistema complejo y autoorganizado. Investigaciones previas, incluyendo las del director de esta tesis, han demostrado que los repositorios de software maduros exhiben patrones medibles de autoorganización y criticidad [7]. Esta tesis se sitúa precisamente en esa intersección: la de un proyecto OSS en transición crítica [6] que debe aplicar una estrategia de migración técnica (Strangler Fig) y, a su vez, necesita una metodología que estructure el caos inherente del "bazar" [8]. Proponemos que DevOps y la Integración Continua no son solo prácticas de ingeniería, sino un mecanismo de retroalimentación y estabilización para este sistema complejo, cuya eficacia se puede medir y validar.
+
+# Hipótesis y justificación. Problemas de investigación que se aborda. Razones para realizar ese estudio. Marco teórico en que se inserta.
+hypothesis: |
+  El reto central de esta tesis es la modernización de eXeLearning, un proyecto de software educativo abierto [1], [2], cuya transición a un modelo de desarrollo comunitario exige un nuevo enfoque técnico y organizativo. Se propone la aplicación sistemática de prácticas DevOps y CI/CD para estructurar la colaboración y asegurar la calidad del producto.
+
+  La adopción de DevOps se justifica por su capacidad para reducir los ciclos de desarrollo y mejorar la fiabilidad en proyectos OSS [4], [8]. Teóricamente, este enfoque se alinea con la visión de los repositorios como sistemas autoorganizados [7], donde la automatización y la retroalimentación constante actúan como catalizadores de la mejora continua [8].
+
+  Hipótesis de trabajo:  
+  - H1. La implantación de un pipeline CI/CD reduce el tiempo de ciclo de desarrollo y aumenta la frecuencia de entregas estables.
+  - H2. La incorporación de estándares de código, revisión por pares y análisis automatizado disminuirá defectos y correcciones, mejorando la calidad y la mantenibilidad del software.  
+  - H3. La refactorización guiada por pruebas automatizadas permite mitigar la deuda técnica de forma segura, facilitando la evolución continua del software.
+
+#! Objetivos. Tanto el objetivo general como los específicos que se pretenden alcanzar.
+objectives: |
+  El objetivo general es desarrollar y validar una metodología de modernización basada en DevOps para mejorar el proceso de desarrollo, la calidad del software y la sostenibilidad del proyecto eXeLearning.
+  Los objetivos específicos son:
+  - Diagnosticar el estado del proyecto y establecer una línea base cuantitativa de su calidad (deuda técnica) y de la eficiencia de su proceso de desarrollo (tiempos de ciclo, frecuencia de entrega).
+  - Diseñar e implementar un pipeline de Integración y Entrega Continua (CI/CD) que automatice las pruebas, el análisis estático de código y la generación de artefactos multiplataforma.
+  - Evaluar el impacto de la metodología comparando las métricas pre y post-intervención para validar la mejora en la calidad del producto y la eficiencia del proceso de desarrollo.
+
+#! Metodología. Describir el diseño metodológico que se va a seguir para el logro de los objetivos.
+methodology: |
+  La metodología a seguir en este trabajo se describe de la siguiente manera:
+    1. Revisión bibliográfica: Identificación del estado del arte en modernización de software legado, prácticas DevOps en proyectos OSS y métricas de calidad en desarrollo colaborativo. Entrevistas a actores involucrados en el proyecto eXeLearning.
+    2. Diagnóstico inicial: Análisis del código para establecer el estado del proyecto (frecuencia de commits, releases, calidad del código, deuda técnica).
+    3. Diseño e implantación: Definición de la arquitectura, planificación de la migración y configuración de pipelines CI/CD con pruebas automatizadas y análisis estático.
+    4. Evaluación: Comparación de métricas (MTTR, defectos, calidad del código), complementada con encuestas a usuarios y entrevistas a desarrolladores.
+    5. Producción científica: Se generará producción científica con los resultados obtenidos en el transcurso del proyecto.
+
+#! Planificación temporal. Describir el plan de actividades a realizar y una temporalización de las mismas. 
+# En el caso de tesis experimentales, aportar el diseño experimental con descripción de los experimentos y sus variables
+planning: |
+  El trabajo se desarrollará en tres años, con hitos principales vinculados a la producción de publicaciones científicas derivadas de la tesis (modalidad de compendio de artículos). A continuación se detalla la planificación de actividades y su cronograma aproximado:
+
+#! Debe añadirse un cronograma e indicarse explícitamente cuando se contempla el envío para su publicación del trabajo de investigación 
+# que avala la calidad de la tesis doctoral (actividad obligatoria en todos los programas de doctorado).
+timeline:
+  - activity: "Publicación científica"
+    y1: "Art. 1:\nHistoria de eXeLearning"
+    y2: "Art. 2:\nEstándares educativos (SCORM, H5P, ELP...)"
+    y3: "Art. 3:\nArquitectura DevOps y métricas"
+  - activity: "Marco teórico y diagnóstico"
+    y1: "Revisión sistemática y estado del arte\nEntrevistas"
+    y2: "Revisión bibliográfica"
+    y3: "Profundización teórica"
+  - activity: "Diseño de solución CI/CD"
+    y1: "Arquitectura inicial"
+    y2: "Automatización y monitorización"
+    y3: "Optimización y simplificación"
+  - activity: "Mejora de calidad y colaboración"
+    y1: ""
+    y2: "Prácticas de QA\nFormación de colaboradores"
+    y3: ""
+  - activity: "Evaluación"
+    y1: "Evaluación inicial"
+    y2: "Evaluación intermedia"
+    y3: "Validación final e hipótesis"
+  - activity: "Transferencia de resultados"
+    y1: ""
+    y2: ""
+    y3: "Guías, plantillas y difusión"
+  - activity: "Redacción y defensa de tesis"
+    y1: ""
+    y2: ""
+    y3: "Memoria final y defensa"
+
+
+#! Medios y financiación. Indicar los medios de los que se dispone.
+resources: |
+  Para ejecutar las tareas se cuenta con la infraestructura tecnológica del proyecto eXeLearning. Estos medios técnicos, ya disponibles, serán suficientes para implementar las mejoras propuestas sin incurrir en costes añadidos.
+  La financiación se apoya en recursos propios. El doctorando es funcionario de carrera, desempeñando el rol de coordinador técnico del Área de Tecnología Educativa de la Consejería de Educación del Gobierno de Canarias, lo que le permite dedicar una parte de su jornada laboral a labores relacionadas con eXeLearning. Esto garantiza una dedicación estable al proyecto de investigación sin requerir financiación externa. Adicionalmente, las mejoras introducidas en eXeLearning durante la tesis repercutirán directamente en un proyecto prioritario para las administraciones educativas, lo que asegura apoyo logístico.
+
+#! Posibles títlos de artículos de investigación a desarrollar
+papers:
+  - title: >
+      eXeLearning: pasado, presente y futuro de un OSS educativo. 
+      Lecciones de modernización y adopción de prácticas DevOps
+    background: >
+      Historia documentada de eXeLearning desde su origen en Nueva Zelanda hasta su institucionalización en España;
+      transición tecnológica Python2→PHP/Symfony;
+      convenio 2021 con MEFP, Andalucía y Extremadura;
+      análisis de comunidad y gobernanza;
+      metáfora 'catedral y bazar';
+      primeras experiencias en CI/CD y métricas DORA como motor de calidad y sostenibilidad.
+
+  - title: >
+      Estándares y herramientas de autor para Recursos Educativos Abiertos:
+      un análisis comparativo entre SCORM, xAPI, CMI5, ePub, H5P y ELP
+    background: >
+      Revisión crítica de formatos de empaquetado educativo (SCORM 1.2, SCORM 2004, xAPI, CMI5, ePub, H5P y el formato ELP de eXeLearning);
+      criterios de interoperabilidad, accesibilidad, usabilidad offline/online, licencias y sostenibilidad;
+      estudio de caso con herramientas OSS como eXeLearning, H5P y Xerte;
+      implicaciones para la reutilización y portabilidad de REA.
+
+  - title: >
+      Arquitecturas DevOps aplicadas al software educativo: CI/CD, testing y analisis de código en eXeLearning
+    background: >
+      Diseño y validación de pipelines CI/CD para eXeLearning como caso de estudio OSS;
+      automatización de pruebas (unitarias, funcionales, integración), análisis estático y generación de artefactos multiplataforma;
+      indicadores de proceso (frecuencia de releases, MTTR, lead time) y de producto (calidad de código, mantenibilidad);
+      comparación con buenas prácticas en ingeniería de software y soft computing aplicado a proyectos complejos.
+
+  - title: >
+      Recursos Educativos Abiertos como Código:
+      versionado, trazabilidad y apertura real de los REA mediante repositorios Git
+    background: >
+      Propuesta de paradigma 'REA as Code' donde los objetos educativos se gestionan como código fuente;
+      integración con Git para versionado, trazabilidad y colaboración distribuida;
+      uso de APIs REST, IA generativa y MCP para generación y mantenimiento;
+      ventajas en transparencia, reproducibilidad y sostenibilidad frente a modelos tradicionales de empaquetado educativo.
+
+#! Referencias bibliográficas fundamentales (máximo de 10). 
+references_keys:
+  - aguado-moralejo_exelearning_2021
+  - prasad_open_2017
+  - gonzalez_exelearning_2019
+  - raymond_cathedral_1999
+  - ministerio_de_educacion_y_formacion_profesional_resolucion_2021
+  - li_microservice_2020
+  - merelo_self-organized_2017
+  - capiluppi_cathedral_2007
