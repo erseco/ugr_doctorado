@@ -5,6 +5,7 @@ const rawArgs = process.argv.slice(2);
 
 const fs = require("fs").promises;
 const path = require("path");
+const yaml = require("js-yaml");
 const PizZip = require("pizzip");
 const Docxtemplater = require("docxtemplater");
 const libre = require("libreoffice-convert");
@@ -106,7 +107,7 @@ async function generate() {
 
 
   // Load data first (used to compute references)
-  const data = JSON.parse(await fs.readFile(path.join(__dirname, "data.json"), "utf8"));
+  const data = yaml.load(await fs.readFile(path.join(__dirname, "data.yaml"), "utf8"));
 
   // ----- Bibliografía desde .bib si hay "references_keys" -----
   const bibPath = argv.bib || path.join(__dirname, "..", "bibliography", "references.bib");

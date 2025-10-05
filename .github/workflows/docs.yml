@@ -10,6 +10,14 @@ on:
       - 'slides/**'
       - 'project/**'
       - 'Makefile'
+  pull_request:
+    paths:
+      - 'bibliography/**'
+      - 'papers/**'
+      - 'thesis/**'
+      - 'slides/**'
+      - 'project/**'
+      - 'Makefile'
   release:
     types: [created, edited]
   workflow_dispatch:
@@ -88,7 +96,9 @@ jobs:
         run: echo "timestamp=$(date -u +'%Y-%m-%d %H:%M:%SZ')" >> "$GITHUB_OUTPUT"
 
       - name: Update pre-release with PDFs
-        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        if: |
+          (github.event_name == 'push' && github.ref == 'refs/heads/main') ||
+          (github.event_name == 'pull_request')
         uses: ncipollo/release-action@v1
         with:
           artifacts: |
