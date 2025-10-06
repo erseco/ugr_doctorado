@@ -1,0 +1,88 @@
+name: Build Investigation Plan
+
+on:
+  push:
+    paths:
+      - 'project/**'
+      - '.github/workflows/project.yml'
+  pull_request:
+    paths:
+      - 'project/**'
+  release:
+    types: [created, edited]
+  workflow_dispatch:
+
+jobs:
+  project:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-node@v5
+        with:
+          node-version: '24'
+          package-manager-cache: false
+
+      - run: npm install
+        working-directory: project
+
+      - name: Cache APT packages
+        uses: actions/cache@v4
+        with:
+          path: /var/cache/apt/archives
+          key: ${{ runner.os }}-apt-libreoffice
+          restore-keys: |
+            ${{ runner.os }}-apt-
+
+      - name: Install LibreOffice (headless) + fonts
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libreoffice fonts-dejavu fonts-liberation
+
+      - name: Update bibliography
+        run: make bibliography
+
+      - name: Build Project Docs
+        run: make project
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: project-docs
+          path: output/project/*.{pdf,docx}
+
+      - name: Build metadata
+        id: meta
+        run: echo "timestamp=$(date -u +'%Y-%m-%d %H:%M:%SZ')" >> "$GITHUB_OUTPUT"
+
+      - name: Update pre-release with PDFs
+        if: |
+          (github.event_name == 'push' && github.ref == 'refs/heads/main') ||
+          (github.event_name == 'pull_request')
+        uses: ncipollo/release-action@v1
+        with:
+          artifacts: |
+            output/project/project.pdf
+            output/project/project.docx
+          token: ${{ secrets.GITHUB_TOKEN }}
+          prerelease: true
+          tag: pre-release
+          name: "Pre-release docs - ${{ steps.meta.outputs.timestamp }}"
+          body: "Automated documentation build executed at ${{ steps.meta.outputs.timestamp }} (UTC)."
+          allowUpdates: true
+          removeArtifacts: false
+
+      - name: Attach PDFs to official release
+        if: github.event_name == 'release'
+        uses: ncipollo/release-action@v1
+        with:
+          artifacts:
+            output/project/project.pdf
+            output/project/project.docx
+          token: ${{ secrets.GITHUB_TOKEN }}
+          tag: ${{ github.event.release.tag_name }}
+          allowUpdates: true
+          removeArtifacts: false
+
