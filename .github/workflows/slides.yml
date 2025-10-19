@@ -1,0 +1,72 @@
+name: Build Slides
+
+on:
+  push:
+    paths:
+      - 'slides/**'
+      - '.github/workflows/slides.yml'
+  pull_request:
+    paths:
+      - 'slides/**'
+  release:
+    types: [created, edited]
+  workflow_dispatch:
+
+jobs:
+  slides:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-node@v5
+        with:
+          node-version: '24'
+
+      - name: Set up Marp
+        run: npm install -g @marp-team/marp-cli
+
+      - name: Update bibliography
+        run: make bibliography
+
+      - name: Build Project Docs
+        run: make slides
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: slides
+          path: output/slides/*.pdf
+
+      - name: Build metadata
+        id: meta
+        run: echo "timestamp=$(date -u +'%Y-%m-%d %H:%M:%SZ')" >> "$GITHUB_OUTPUT"
+
+      - name: Update pre-release with PDFs
+        if: |
+          (github.event_name == 'push' && github.ref == 'refs/heads/main') ||
+          (github.event_name == 'pull_request')
+        uses: ncipollo/release-action@v1
+        with:
+          artifacts: |
+            output/**/*.pdf
+            output/**/*.docx
+          token: ${{ secrets.GITHUB_TOKEN }}
+          prerelease: true
+          tag: pre-release
+          name: "Pre-release docs - ${{ steps.meta.outputs.timestamp }}"
+          body: "Automated documentation build executed at ${{ steps.meta.outputs.timestamp }} (UTC)."
+          allowUpdates: true
+          removeArtifacts: false
+
+      - name: Attach PDFs to official release
+        if: github.event_name == 'release'
+        uses: ncipollo/release-action@v1
+        with:
+          artifacts: 'output/**/*.pdf'
+          token: ${{ secrets.GITHUB_TOKEN }}
+          tag: ${{ github.event.release.tag_name }}
+          allowUpdates: true
+          removeArtifacts: false
+
