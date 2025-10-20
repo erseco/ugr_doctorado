@@ -32,6 +32,9 @@ background: >
 hypothesis: |
   El reto central de esta tesis es la modernización de eXeLearning, un proyecto de software educativo abierto [1], [2], cuya transición a un modelo de desarrollo comunitario exige un nuevo enfoque técnico y organizativo. Se propone la aplicación sistemática de prácticas DevOps y CI/CD para estructurar la colaboración y asegurar la calidad del producto.
 
+  Hipótesis general:
+  En proyectos de software libre en proceso de modernización, una metodología DevOps basada en CI/CD, estándares de código y pruebas automatizadas actúa como mecanismo de retroalimentación que favorece la colaboración, reduce la deuda técnica y los tiempos de entrega, y mejora de forma medible la calidad y la sostenibilidad del software.
+
   La adopción de DevOps se justifica por su capacidad para reducir los ciclos de desarrollo y mejorar la fiabilidad en proyectos OSS [4], [8]. Teóricamente, este enfoque se alinea con la visión de los repositorios como sistemas autoorganizados [7], donde la automatización y la retroalimentación constante actúan como catalizadores de la mejora continua [8].
 
   Hipótesis de trabajo:  
