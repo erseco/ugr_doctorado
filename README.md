@@ -30,23 +30,32 @@ make
 
 Ensure you have the required dependencies installed. You can install them on Debian/Ubuntu-based systems with:
 
-```bash
-sudo apt-get -qq update && sudo apt-get install -y --no-install-recommends \
-  texlive-fonts-recommended texlive-latex-extra texlive-fonts-extra dvipng \
-  texlive-latex-recommended texlive-bibtex-extra biber
-```
-
 Generated PDFs will be located in the `output/` directory.
 
 ---
 
-## **PhD Project Overview**
+## PhD Project Overview
 
-### **Topic: Moving Target Defense**  
-**Author:** Ernesto Serrano Collado ([@erseco](https://github.com/erseco/)) 
-**Supervisor:** Juan Julián Merelo Guervós ([@JJ](https://github.com/jj/))
+### Title
+- From Cathedral to Bazaar: Modernization of eXeLearning through DevOps, CI/CD and development best practices in an OSS educational project.
+- De la catedral al bazar: Modernización de eXeLearning mediante DevOps, integración continua y buenas prácticas de desarrollo en un proyecto educativo de código abierto.
 
-This thesis explores adaptive cybersecurity strategies under the concept of Moving Target Defense (MTD). The full abstract will be disclosed in future updates.
+### Author
+Ernesto Serrano Collado ([@erseco](https://github.com/erseco/))
+
+### Director
+Juan Julián Merelo Guervós ([@JJ](https://github.com/jj/))
+
+### Abstract (English)
+This PhD thesis takes [eXeLearning](https://github.com/exelearning/exelearning), an open-source authoring tool for creating and publishing educational resources, as a case study of software modernization.
+Originally developed in Python 2 and later reimplemented in PHP with Symfony, eXeLearning faces the paradox of Theseus: if all its technological components are replaced, is it still the same project?
+The research applies DevOps practices, Continuous Integration/Continuous Delivery (CI/CD), and automated quality tests to evaluate their impact on process performance, code maintainability, and sustainability of an open-source project in the educational field.
+The work combines action research and longitudinal repository analysis, aiming to generate empirical evidence transferable to other public software projects.
+
+### Resumen (Español)
+Esta tesis doctoral toma a [eXeLearning](https://github.com/exelearning/exelearning), una herramienta de autor de código abierto para crear y publicar recursos educativos, como caso de estudio de modernización de software.
+Desarrollado originalmente en Python 2 y posteriormente reimplementado en PHP con Symfony, eXeLearning enfrenta la paradoja de Teseo: si se reemplazan todos sus componentes tecnológicos, ¿sigue siendo el mismo proyecto?
+La investigación emplea prácticas DevOps, Integración y Entrega Continua (CI/CD) y pruebas de calidad automatizadas para evaluar su impacto en el rendimiento del proceso de desarrollo, la mantenibilidad del código y la sostenibilidad de un proyecto OSS en el ámbito educativo.
 
 ---
 
