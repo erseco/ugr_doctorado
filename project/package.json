@@ -1,20 +1,27 @@
 {
-  "name": "project",
+  "name": "ugr_doctorado",
   "version": "1.0.0",
-  "description": "",
+  "description": "Tools for generating my PhD thesis",
   "main": "generate.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "keywords": [
+    "phd",
+    "thesis",
+    "ugr",
+    "latex",
+    "docxtemplater"
+  ],
+  "author": "Ernesto Serrano",
+  "license": "GPL-3.0-or-later",
   "type": "commonjs",
   "dependencies": {
     "@citation-js/core": "^0.7.15",
     "@citation-js/plugin-bibtex": "^0.7.15",
-    "@citation-js/plugin-csl": "^0.7.15",    
+    "@citation-js/plugin-csl": "^0.7.15",
     "docxtemplater": "^3.66.0",
+    "js-yaml": "^4.1.0",
     "libreoffice-convert": "^1.6.1",
     "pizzip": "^3.2.0"
   }

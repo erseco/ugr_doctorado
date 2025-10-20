@@ -69,9 +69,7 @@ jobs:
           (github.event_name == 'pull_request')
         uses: ncipollo/release-action@v1
         with:
-          artifacts: |
-            output/**/*.pdf
-            output/**/*.docx
+          artifacts: 'output/**/*.pdf'
           token: ${{ secrets.GITHUB_TOKEN }}
           prerelease: true
           tag: pre-release
