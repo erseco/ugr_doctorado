@@ -55,8 +55,7 @@ The work combines action research and longitudinal repository analysis, aiming t
 ### Resumen (Español)
 Esta tesis doctoral toma a [eXeLearning](https://github.com/exelearning/exelearning), una herramienta de autor de código abierto para crear y publicar recursos educativos, como caso de estudio de modernización de software.
 Desarrollado originalmente en Python 2 y posteriormente reimplementado en PHP con Symfony, eXeLearning enfrenta la paradoja de Teseo: si se reemplazan todos sus componentes tecnológicos, ¿sigue siendo el mismo proyecto?
-La investigación emplea prácticas DevOps, Integración y Entrega Continua (CI/CD) y pruebas de calidad automatizadas para evaluar su impacto en el rendimiento del proceso, la mantenibilidad del código y la sostenibilidad de un proyecto OSS en el ámbito educativo.
-El trabajo combina investigación-acción y análisis longitudinal del proyecto, con el objetivo de generar evidencia empírica transferible a otros proyectos de software público.
+La investigación emplea prácticas DevOps, Integración y Entrega Continua (CI/CD) y pruebas de calidad automatizadas para evaluar su impacto en el rendimiento del proceso de desarrollo, la mantenibilidad del código y la sostenibilidad de un proyecto OSS en el ámbito educativo.
 
 ---
 
