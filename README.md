@@ -25,7 +25,7 @@ This repository contains all the material related to my PhD, including the thesi
 To generate PDF files from the Markdown sources, use the provided `Makefile`. Simply execute:
 
 ```bash
-make all
+make
 ```
 
 Ensure you have the required dependencies installed. You can install them on Debian/Ubuntu-based systems with:
