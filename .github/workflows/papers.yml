@@ -54,7 +54,7 @@ jobs:
       - name: Build Papers
         run: make papers
 
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v5
         with:
           name: papers
           path: output/papers/*.pdf
