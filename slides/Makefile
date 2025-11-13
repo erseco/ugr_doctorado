@@ -40,11 +40,9 @@ assets: prepare
 		rsync -a --delete "$(ASSETS_SRC)/" "$(ASSETS_OUTPUT_DIR)/"; \
 		mkdir -p "$(SLIDES_OUTPUT_DIR)"; \
 		ln -sfn ../images "$(SLIDES_OUTPUT_DIR)/images"; \
-		ln -sfn ../images/assets "$(SLIDES_OUTPUT_DIR)/assets"; \
 	fi
 
 # 		ln -sfn ../images "$(ROOT_DIR)/images"; \
-# 		ln -sfn ../images/assets "$(ROOT_DIR)/assets"; \
 
 
 $(SLIDES_OUTPUT_DIR)/%.html: %.md | prepare assets
