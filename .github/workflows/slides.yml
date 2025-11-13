@@ -13,10 +13,12 @@ on:
   workflow_dispatch:
 
 jobs:
-  slides:
+  build:
     runs-on: ubuntu-latest
     permissions:
       contents: write
+      pages: write
+      id-token: write
 
     steps:
       - uses: actions/checkout@v5
@@ -38,6 +40,12 @@ jobs:
         with:
           name: slides
           path: output/slides/*.pdf
+          if-no-files-found: ignore
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: output/site
 
       - name: Build metadata
         id: meta
@@ -68,3 +76,17 @@ jobs:
           allowUpdates: true
           removeArtifacts: false
 
+  deploy:
+    needs: build
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
