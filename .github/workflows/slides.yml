@@ -36,6 +36,12 @@ jobs:
       - name: Build Project Docs
         run: make slides
 
+      - name: Remove 00_* files from releases and site
+        run: |
+          rm -f output/slides/00_*.pdf output/slides/00_*.html
+          rm -f output/site/slides/00_*.pdf output/site/slides/00_*.html
+          node slides/scripts/generate-index.js output/site/slides output/site/index.html
+
       - uses: actions/upload-artifact@v5
         with:
           name: slides
