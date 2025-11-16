@@ -64,10 +64,11 @@ NOTAS AL ORADOR:
 0. [Título](#1)
 1. [Introducción](#4)
 2. [El problema](#6)
-3. [La solución](#10)
+3. [La solución](#9)
 4. [El plan](#14)
 5. [El impacto](#18)
-6. [Conclusiones](#18)
+6. [Conclusiones](#20)
+
 
 <!--
 NOTAS AL ORADOR:
@@ -599,7 +600,7 @@ NOTAS AL ORADOR:
 
 <!-- _class: chapter -->
 
-# Conclusiones
+# 6. Conclusiones
 
 ## Más allá de eXeLearning
 
