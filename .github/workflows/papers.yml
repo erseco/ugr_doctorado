@@ -54,6 +54,9 @@ jobs:
       - name: Build Papers
         run: make papers
 
+      - name: Remove 00_* files from releases
+        run: rm -f output/papers/00_*.pdf
+
       - uses: actions/upload-artifact@v5
         with:
           name: papers

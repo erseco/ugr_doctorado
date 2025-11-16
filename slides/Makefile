@@ -54,7 +54,7 @@ $(SLIDES_OUTPUT_DIR)/%.pdf: %.md | prepare assets
 	@marp --html --theme-set themes/ --allow-local-files --base-dir "$(ROOT_DIR)" --pdf $< -o $@
 
 serve: assets
-	marp --server --watch --allow-local-files --input-dir . --base-dir "$(ROOT_DIR)"
+	marp --server --watch --allow-local-files --input-dir . --base-dir "$(ROOT_DIR)" --html
 
 check-marp:
 ifndef MARP
