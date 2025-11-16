@@ -40,6 +40,9 @@ slides: check-marp
 	@$(MAKE) -C slides pdf
 	@$(MAKE) -C slides site
 
+serve: check-marp
+	@$(MAKE) -C slides serve
+
 # Dependency checks
 check-dependencies: check-node check-r check-tectonic check-spellcheck
 
