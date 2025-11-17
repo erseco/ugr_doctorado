@@ -29,9 +29,10 @@ paginate: true
 
 <!--
 NOTAS AL ORADOR:
-- Presentarse
-- Contexto: "Hoy presento mi plan de investigación para el doctorado en TIC"
-- Hook inicial: "¿Qué pasa cuando un software educativo usado por miles de docentes está a punto de morir?"
+- Presentarse brevemente.
+- Frase de contexto: "Hoy presento el plan de investigación de mi tesis doctoral".
+- Hook: "¿Qué pasa cuando un software educativo usado por miles de docentes entra en crisis tecnológica y organizativa?"
+- Remarcar: no vengo a contar un proyecto ya hecho, sino una investigación que va a estudiar cómo modernizarlo.
 - Duración total: 15-20 minutos aproximadamente
 -->
 
@@ -45,14 +46,14 @@ NOTAS AL ORADOR:
 # Programa de Doctorado en **TIC**
 
 - Línea: **Soft Computing**
-- Modalidad: **Compendio de artículos**
+- Enfoque: **Metodología para modernizar software educativo**
 - Director: **Juan Julián Merelo Guervós**
 
 <!--
 NOTAS AL ORADOR:
-- Mencionar la línea de Soft Computing: sistemas complejos, autoorganización
-- Aclarar que será tesis por compendio (3 artículos previstos)
-- Ventaja del compendio: validación externa continua de resultados
+- Enlazar con la línea de Soft Computing: repositorios como sistemas complejos y autoorganizados.
+- Aclarar que la tesis se orienta a desarrollar y validar una metodología general usando eXeLearning como caso de estudio.
+- La decisión formal sobre modalidad (compendio o no) se ajustará a la normativa y a la producción científica final.
 -->
 
 ---
@@ -61,36 +62,37 @@ NOTAS AL ORADOR:
 
 # Índice
 
-0. [Título](#1)
-1. [Introducción](#4)
-2. [El problema](#6)
-3. [La solución](#9)
-4. [El plan](#14)
-5. [El impacto](#18)
-6. [Conclusiones](#20)
+0. [Título y contexto](#1)
+1. [Introducción y estado del arte](#4)
+2. [Problema y marco teórico](#8)
+3. [Hipótesis y objetivos](#11)
+4. [Metodología y plan de trabajo](#16)
+5. [Impacto esperado](#20)
+6. [Conclusiones](#22)
 
 
 <!--
 NOTAS AL ORADOR:
-- Presentación estructurada en 5 bloques
-- Cada bloque tiene un mensaje clave
-- Introducción sitúa el contexto, problema establece el reto
-- Mantener la atención en el "por qué" más que en el "qué"
+- Se sigue la estructura de la rúbrica:
+  1) Estado del arte e introducción del caso.
+  2) Formulación del problema enmarcado teóricamente.
+  3) Hipótesis y objetivos de investigación.
+  4) Metodología y plan temporal.
+  5) Impacto y conclusiones.
 -->
 
 ---
 
 <!-- _class: chapter -->
 
-# 1. Introducción
+# 1. Introducción y estado del arte
 
-## El contexto del proyecto
+## De la catedral al bazar
 
 <!--
 NOTAS AL ORADOR:
-- Empezar situando el contexto: ¿qué es eXeLearning?
-- Importancia del proyecto para educación pública
-- Base de usuarios consolidada
+- Situar brevemente qué es eXeLearning y por qué es relevante en educación.
+- Enlazar con la transición "de la catedral al bazar" como cambio de modelo organizativo.
 -->
 
 ---
@@ -110,7 +112,7 @@ NOTAS AL ORADOR:
 </div>
 <div>
 
-![h:350px center drop-shadow:4px,5px,15px,#010101](../images/slides/exelearning/screenshot00b.png)
+![h:350px center drop-shadow:4px,5px,15px,#010101](../images/slides/exelearning/screenshot00c.png)
 <figcaption>Interfaz de eXeLearning: creación de REA.</figcaption>
 
 </div>
@@ -118,66 +120,16 @@ NOTAS AL ORADOR:
 
 <!--
 NOTAS AL ORADOR:
-- eXe es SOFTWARE CRÍTICO para educación pública
+- Subrayar que es software crítico en muchas administraciones educativas.
 - REA = recursos abiertos, reutilizables, accesibles
-- No solo un editor: exporta a estándares educativos
-- Base de usuarios consolidada: Canarias, Extremadura, Andalucía, etc.
+- Conectar con el estado del conocimiento: eXe aparece en la literatura sobre REA y herramientas de autor.
+- Si buscamos en buscadores:
+  - Google Scholar: 7860 resultados
+  - Web of Science: 130 resultados
+  - Dialnet: 101 resultados
+  - DigiBug: 21 resultados
 -->
 
----
-
-<!-- _class: chapter -->
-
-# 2. El problema
-
-## De la catedral al bazar
-
-<!--
-NOTAS AL ORADOR:
-- Pausa dramática
-- "Ahora vamos al problema que motiva toda esta investigación"
-- Conectar con la metáfora de Raymond: catedral vs bazar
--->
-
----
-
-# La **doble crisis** del proyecto
-
-<div class="multicolumn"><div>
-
-<div class="callout danger">
-
-### Crisis tecnológica
-
-- Código en **Python 2** (fin de vida: 2020)
-- Obsolescencia inevitable
-- Deuda técnica masiva
-- Riesgo de abandono
-
-</div>
-
-</div><div>
-
-<div class="callout warning">
-
-### Crisis de gobernanza
-
-- Licitación 2021 (MEFP + CCAA) → **entrega fallida**
-- Código incompleto, errores graves
-- Arquitectura poco clara
-- Desvinculación de socios clave
-
-</div>
-
-</div></div>
-
-<!--
-NOTAS AL ORADOR:
-- Doble golpe: tecnología Y gobernanza
-- Python 2 EOL = sin soporte, sin seguridad, sin futuro
-- El intento institucional de modernización fracasó estrepitosamente
-- Crisis de confianza: ¿quién continúa el proyecto?
--->
 ---
 
 # De la **catedral** al **bazar**¹
@@ -208,57 +160,29 @@ NOTAS AL ORADOR:
 
 </footnote>
 
-> **Reto central:** ¿Cómo estructurar el caos del bazar para rescatar el proyecto?
-
-
+> **Pregunta de fondo:** ¿Cómo estructurar este “bazar” para garantizar la continuidad y calidad de eXeLearning?
 
 <!--
 NOTAS AL ORADOR:
-- Metáfora clásica de Raymond aplicada a un caso real
 - Transición FORZOSA de catedral a bazar, no planificada
 - El bazar tiene ventajas (resiliencia, diversidad) pero también riesgos (fragmentación, falta de dirección)
-- Aquí entra la propuesta: DevOps como estructura para coordinar el bazar
+- Referenciar brevemente la literatura sobre modelos de desarrollo OSS (Raymond, Capiluppi & Michlmayr).
+- Introducir que la tesis se sitúa en este contexto: un proyecto educativo de software libre en transición crítica.
 -->
 
 ---
 
-<!-- _class: chapter -->
+# La **doble crisis** del proyecto
 
-# 3. La solución
+<div class="multicolumn"><div>
 
-## DevOps como estructura para el caos
+<div class="callout danger">
 
-<!--
-NOTAS AL ORADOR:
-- Cambio de tono: de problema a solución
-- DevOps no es solo tecnología: es CULTURA + PROCESO + HERRAMIENTAS
-- La tesis propone usar DevOps para ESTABILIZAR un sistema complejo
--->
+### Crisis tecnológica
 
-
----
-
-# Hipótesis de trabajo
-
-> ¿Se puede **reducir el tiempo de desarrollo, aumentar la frecuencia de entregas y disminuir la deuda técnica** de un proyecto OSS mediante DevOps, CI/CD, estándares y pruebas automatizadas?
-
-<div class="multicolumn vcenter"><div>
-
-<div class="callout tip">
-
-**H1 - CI/CD**
-
-↓ Tiempo de ciclo, ↑ estabilidad de releases.
-
-</div>
-
-</div><div>
-
-<div class="callout info">
-
-**H2 - Calidad**
-
-Estándares + revisión + análisis ↓ defectos, ↑ mantenibilidad.
+- Base de código en **Python 2** (fin de vida en 2020)
+- Limitaciones para mantener y extender la herramienta
+- Riesgo de abandono si no se moderniza
 
 </div>
 
@@ -266,9 +190,11 @@ Estándares + revisión + análisis ↓ defectos, ↑ mantenibilidad.
 
 <div class="callout warning">
 
-**H3 - Deuda técnica**
+### Crisis organizativa
 
-Refactorización con pruebas contiene deuda y acelera evolución.
+- Licitación 2021 (MEFP + CCAA) → entrega fallida
+- Código incompleto, errores graves, arquitectura poco clara
+- Desvinculación de socios institucionales
 
 </div>
 
@@ -276,72 +202,132 @@ Refactorización con pruebas contiene deuda y acelera evolución.
 
 <!--
 NOTAS AL ORADOR:
-- Hipótesis MEDIBLE: no es filosofía, son MÉTRICAS concretas
-- DORA, SonarQube, MTTR, Lead Time, etc.
-- Cada hipótesis se validará con datos cuantitativos
-- Comparación antes/después de la intervención DevOps
+- Doble golpe: tecnología Y gobernanza
+- Python 2 EOL = sin soporte, sin seguridad, sin futuro
+- El intento institucional de modernización fracasó estrepitosamente
+- Crisis de confianza: ¿quién continúa el proyecto?
+- Relacionar esta situación con trabajos previos sobre fracaso en modernización de software legado y retos de gobernanza en OSS.
+- No dramatizar; presentar la crisis como punto de partida para una investigación.
+-->
+
+
+---
+
+<!-- _class: chapter -->
+
+# 2. Problema y marco teórico
+
+## Un caso de modernización en transición crítica
+
+
+
+---
+
+# Formulación del problema
+
+> eXeLearning se encuentra en una transición desde un modelo institucional centralizado (catedral) a un modelo comunitario distribuido (bazar), en pleno proceso de modernización técnica.
+
+- **Necesidad técnica:** migrar desde una base de código obsoleta a una plataforma mantenible y extensible.
+- **Necesidad organizativa:** coordinar contribuciones de una comunidad distribuida, con diferentes niveles de experiencia.
+- **Problema científico:** falta evidencia sobre cómo prácticas tipo DevOps influyen en la modernización de proyectos educativos en este tipo de transición.
+
+<!--
+NOTAS AL ORADOR:
+- Dejar claro que la tesis no asume que DevOps funcione por defecto: se propone estudiarlo empíricamente.
+- Conectar con la rúbrica: de la revisión del estado del conocimiento se deriva un problema bien definido.
+
+- NOTA: el problema está formulado como cuestión abierta, no como solución ya encontrada 
 -->
 
 ---
 
-# Marco teórico
+
+# Marco teorico
 
 <div class="multicolumn vcenter"><div>
 
 ### Paradoja de Teseo
 
-¿Hasta dónde podemos cambiar eXe y seguir siendo eXe?
+¿Hasta dónde se puede sustituir el código de eXeLearning y seguir considerando que es el mismo proyecto?
 
 ### Strangler Fig Pattern
 
-Migración incremental: rodear el legado con componentes nuevos.
+Migración incremental: rodear el legado con componentes nuevos y sustituirlo de forma progresiva.
 
 </div><div>
 
 ### Soft Computing
 
-Repositorios como **sistemas complejos autoorganizados**.
+Repositorios como **sistemas complejos autoorganizados**: patrones de actividad, criticidad y autoorganización.
 
-### DevOps y CI/CD
+### DevOps como mecanismo de estabilización
 
-Retroalimentación continua para estabilizar el "bazar".
+Prácticas de integración continua y automatización como posible forma de organizar el "bazar".
 
 </div></div>
 
 <!--
 NOTAS AL ORADOR:
-- Teseo: cuestión filosófica pero práctica (¿cuándo deja de ser eXe?)
-- Strangler Fig: patrón de migración segura (Martin Fowler)
-- Soft Computing: visión de Merelo (director) sobre repositorios
-- DevOps: la solución propuesta para coordinar el "bazar"
-- Conexión: marcos teóricos → solución práctica
+- Mostrar que el problema se apoya en marcos conceptuales claros: filosofía de identidad, patrones de migración, sistemas complejos y prácticas DevOps.
+- Enfatizar que DevOps aquí no se presenta como solución dada, sino como objeto de estudio: queremos analizar su efecto en este contexto.
+-->
 
+---
+<!-- _class: chapter -->
 
-**Paradoja de Teseo** ¿Al sustituir casi todo el código original sigue siendo el mismo proyecto?
+# 3. Hipótesis y objetivos
 
-- **Reflexión** Identidad del software vs. identidad del código fuente
+## DevOps como objeto de estudio
 
-**Strangler Fig Pattern** Migración incremental sin parada total
+---
 
-- Estrategia: Rodear el legado con componentes nuevos y "estrangular" progresivamente
+# Hipótesis de trabajo
 
-**Soft Computing:** Repositorios como **sistemas complejos autoorganizados**
+> Se propone estudiar en qué medida la adopción de una **metodología DevOps** (integración y entrega continua, pruebas automatizadas y pautas de calidad) puede reducir el tiempo de desarrollo, aumentar la frecuencia de versiones estables y mitigar los problemas técnicos acumulados en un proyecto de código abierto.
 
+<!--
+NOTAS AL ORADOR:
+- Insistir en el carácter contrastable de las hipótesis: cada una se puede validar o refutar con métricas.
+- Evitar el tono de "ya lo hemos conseguido"; hablar siempre en futuro y condicional.
 -->
 
 ---
 
-# Objetivos
+# Hipótesis específicas
 
-> Desarrollar y validar una **metodología de modernización basada en DevOps** para mejorar proceso, calidad y sostenibilidad del proyecto eXeLearning.
+- **H1 – Proceso**  
+  La implantación de un proceso de integración continua y entregas frecuentes reducirá el tiempo de ciclo y aumentará la regularidad de versiones estables.
+
+- **H2 – Calidad**  
+  El uso sistemático de pruebas automatizadas, revisión por pares y análisis de código reducirá defectos y facilitará el mantenimiento.
+
+- **H3 – Evolución segura**  
+  La refactorización guiada por pruebas permitirá sustituir componentes heredados con menor riesgo, favoreciendo una modernización progresiva.
+
+
+---
+
+# Objetivo general
+
+> Desarrollar y validar una **metodología de modernización basada en prácticas DevOps** aplicada al caso de eXeLearning, y analizar su impacto en el proceso de desarrollo y en la calidad del software.
+
+<!--
+NOTAS AL ORADOR:
+- Explicar que eXeLearning es el laboratorio donde se prueba la metodología, pero el objetivo es generalizable a proyectos similares.
+-->
+
+---
+
+# Objetivos específicos
 
 <div class="multicolumn"><div>
 
 <div class="callout note">
 
-**O1 - Diagnosticar**
+**O1 – Diagnosticar**
 
-- Línea base: deuda técnica, tiempos de ciclo, frecuencia de entrega
+- Analizar el estado actual del proyecto.
+- Establecer una línea base cuantitativa de calidad del código y del proceso de desarrollo.
 
 </div>
 
@@ -349,9 +335,10 @@ NOTAS AL ORADOR:
 
 <div class="callout info">
 
-**O2 - Implementar**
+**O2 – Intervenir**
 
-- Pipeline CI/CD: pruebas, análisis estático, artefactos multiplataforma
+- Diseñar e implantar una metodología DevOps adaptada al proyecto.
+- Configurar procesos de integración continua, pruebas y revisión colaborativa.
 
 </div>
 
@@ -359,9 +346,10 @@ NOTAS AL ORADOR:
 
 <div class="callout tip">
 
-**O3 - Evaluar**
+**O3 – Evaluar**
 
-- Comparación pre/post: métricas, calidad de código, feedback de usuarios
+- Comparar métricas antes y después de la intervención.
+- Valorar el impacto en proceso, producto y comunidad.
 
 </div>
 
@@ -369,161 +357,88 @@ NOTAS AL ORADOR:
 
 <!--
 NOTAS AL ORADOR:
-- Tres objetivos claros y secuenciales
-- O1: saber dónde estamos (estado actual)
-- O2: intervención técnica (pipeline CI/CD completo)
-- O3: medir el impacto (validación empírica)
-- Metodología científica: hipótesis → intervención → validación
-
-
-<div class="multicolumn"><div>
-
-**O1 - Diagnosticar**
-
-Línea base cuantitativa:
-- Deuda técnica
-- Tiempos de ciclo
-- Frecuencia de entrega
-
-</div><div>
-
-**O2 - Implementar**
-
-Pipeline CI/CD:
-- Pruebas automatizadas
-- Análisis estático
-- Artefactos multiplataforma
-
-</div><div>
-
-**O3 - Evaluar**
-
-Comparación pre/post:
-- Métricas DORA
-- Calidad de código
-- Encuestas y entrevistas
-
-</div></div>
-
-
-
-
--->
-
----
-
-# Metodología
-
-### Enfoque iterativo DevOps
-
-1. **Revisión bibliográfica:** Estado del arte - DevOps, OSS, métricas de calidad
-
-2. **Diagnóstico inicial:** Análisis de código, commits, releases, deuda técnica
-
-3. **Diseño e implantación:** Arquitectura, pipelines CI/CD, pruebas, análisis estático
-
-4. **Evaluación:** Métricas, Calidad de código, Encuestas y entrevistas
-
-5. **Producción científica:** Resultados → artículos → transferencia
-
-<!--
-NOTAS AL ORADOR:
-- Metodología MIXTA: cuantitativa (métricas) + cualitativa (entrevistas)
-- DORA = métricas de élite de ingeniería de software (Google, DevOps Research)
-- Métricas de proceso (DORA): lead time, deployment frequency, MTTR, change failure rate
-- Métricas de producto: deuda técnica, complejidad, cobertura de pruebas
-- Validación triangulada: código + proceso + percepción de usuarios
+- Enlazar cada objetivo con las hipótesis: diagnóstico → justificación; intervención → experimentación; evaluación → validación/refutación.
 -->
 
 ---
 
 <!-- _class: chapter -->
 
-# 4. El plan
+# 5. Metodología y plan de trabajo
 
-## Hoja de ruta y producción científica
+## De la formulación al diseño experimental
+
+---
+
+# Metodología
+
+Enfoque mixto, con combinación de análisis cuantitativo de repositorios y evaluación cualitativa mediante entrevistas y encuestas.
+
+1. **Revisión bibliográfica:** Estado del arte - DevOps, OSS, métricas de calidad
+
+2. **Diagnóstico inicial:** Análisis de código, commits, releases, deuda técnica
+
+3. **Diseño e implantación de la metodología:** Arquitectura, pipelines CI/CD, pruebas, análisis estático
+
+4. **Evaluación:** Métricas, Calidad de código, Encuestas y entrevistas
+
+5. **Producción científica**: Resultados → artículos → transferencia
 
 <!--
 NOTAS AL ORADOR:
-- Pausa
-- "¿Cómo se ejecuta todo esto? Vamos al plan concreto"
-- 3 años, 3 artículos, hitos claros
+- Recalcar alineación con la rúbrica: metodología adecuada a los objetivos, con ventajas y limitaciones explícitas.
+- Mencionar brevemente que no se tratan datos personales sensibles, por lo que los aspectos éticos se centran en transparencia de procesos y licencias de software libre.
+
+1. **Revisión bibliográfica**
+   - Modernización de software legado, DevOps en OSS, métricas de calidad y productividad.
+   - Posicionamiento de eXeLearning en el ecosistema de herramientas de autor y REA.
+
+2. **Diagnóstico inicial**
+   - Análisis del repositorio: actividad, releases, incidencias.
+   - Métricas de código: complejidad, módulos críticos, problemas acumulados.
+
+3. **Diseño e implantación de la metodología**
+   - Definición de arquitectura de migración y procesos automáticos.
+   - Introducción de pruebas, análisis estático y flujos de colaboración.
+
+4. **Evaluación**
+   - Comparación pre/post de métricas de proceso y calidad.
+   - Entrevistas y encuestas a desarrolladores y usuarios.
+
+5. **Producción científica**
+   - Artículos que recojan el diagnóstico, la metodología propuesta y los resultados de la evaluación.
+
+
+
 -->
 
 ---
+
 
 # Planificación temporal (3 años)
 
+<div style="margin: 0 200px; width: 100%;">
+
+
 | Actividad | Año 1 | Año 2 | Año 3 |
-| :--- | :--- | :--- | :--- |
-| **Marco teórico y diagnóstico** | Revisión sistemática y estado del arte | Revisión bibliográfica | Profundización teórica |
-| **Diseño de solución CI/CD** | Arquitectura inicial | Automatización y monitorización | Optimización y simplificación |
-| **Evaluación** | Evaluación inicial | Evaluación intermedia | **Validación final de hipótesis** |
+| :------ | :----: | :----: | :----: |
+| **Revisión y marco teórico**  | X | X |  |
+| **Diagnóstico inicial** | X |  |  |
+| **Diseño de la metodología** | X | X |  |
+| **Implantación y ajuste** |  | X | X |
+| **Evaluación y validación** | X | X | X |
+| **Transferencia de resultados** |   |   | X |
+| **Artículos y memoria de tesis** | Art. 1 | Art. 2 | Art. 3 |
 
-<!--
-NOTAS AL ORADOR:
-- Tabla completa: ver cronograma en data.yaml
-- Cada año tiene un HITO CIENTÍFICO (artículo)
-- Año 1: fundamentos + primer artículo (historia)
-- Año 2: implementación + segundo artículo (estándares)
-- Año 3: validación + tercer artículo (DevOps y métricas) + defensa
-- Compendio = validación externa continua
--->
-
----
-
-# Producción científica prevista
-
-<div class="multicolumn">
-<div>
-
-<div class="callout note">
-
-### Artículo 1
-**eXeLearning: pasado, presente y futuro**
-
-- Historia del proyecto (NZ → España)
-- Transición catedral → bazar
-
-</div>
-
-</div>
-<div>
-
-<div class="callout info">
-
-### Artículo 2
-**Estándares para REA**
-
-- Análisis comparativo: SCORM, xAPI, CMI5, H5P, ePub, **elp** y **elpx**
-- Interoperabilidad
-- Implicaciones para reutilización
-
-</div>
-
-</div>
-<div>
-
-<div class="callout tip">
-
-### Artículo 3
-**Arquitectura DevOps aplicada a OSS educativo**
-
-- Diseño y validación de pipelines CI/CD
-- Evaluación de impacto (métricas)
-
-</div>
-
-</div>
 </div>
 
 <!--
 NOTAS AL ORADOR:
-- 3 artículos = 3 contribuciones distintas
-- Art. 1: CONTEXTO e HISTORIA (cualitativo + primeras métricas)
-- Art. 2: ESTÁNDARES educativos (comparativa técnica)
-- Art. 3: VALIDACIÓN de DevOps (cuantitativo + modelo transferible)
-- Cada artículo puede ir a revista/conferencia diferente
+- Resumir en una frase:
+  * Año 1: marco teórico y diagnóstico.
+  * Año 2: diseño e implantación de la metodología.
+  * Año 3: evaluación, transferencia y redacción final.
+- No entrar al detalle de cada celda, la tabla ya transmite estructura y factibilidad.
 -->
 
 ---
@@ -534,66 +449,52 @@ NOTAS AL ORADOR:
 
 ### Recursos disponibles
 
-**Infraestructura técnica**
-- Repositorio GitHub de eXeLearning
-- Servidores de CI/CD (INTEF, GitHub)
-- Comunidad de desarrollo activa
-
+- Repositorio público de eXeLearning.
+- Infraestructura para control de versiones e integración continua.
+- Comunidad de desarrolladores y usuarios activos.
 
 </div><div>
 
 ### Financiación
 
-**Recursos propios**
-
-- Rol: Coordinador Técnico de Educación (Gobierno de Canarias)
-- **Sin necesidad de financiación externa**
+- Recursos propios vinculados al rol profesional.
+- Ausencia de costes adicionales significativos.
+- Apoyo institucional al proyecto.
 
 </div></div>
 
 <!--
 NOTAS AL ORADOR:
-- Situación privilegiada: acceso total al proyecto + tiempo dedicado
-- No se necesitan subvenciones (recurso propio garantizado)
-- Alineación de intereses: tesis + proyecto real + beneficio público
-- Sostenibilidad garantizada
+- Destacar que el plan es factible con los medios ya disponibles.
 -->
 
 ---
 
 <!-- _class: chapter -->
 
-# 5. El impacto
+# 5. Impacto esperado
 
-## Resultados esperados
-
-<!--
-NOTAS AL ORADOR:
-- "¿Qué va a aportar esta tesis?"
-- Dos niveles: práctico (eXe funciona) + teórico (modelo validado)
--->
+## Más allá de eXeLearning
 
 ---
 
 # Resultados esperados
 
-**Validación cuantitativa:**
-- Impacto de DevOps en proyectos OSS tipo "bazar"
-- Métricas de calidad de código en contexto educativo
-- Relación entre CI/CD y reducción de la deuda técnica
+**En el ámbito científico**
 
+- Caracterización de un caso real de modernización de software educativo.
+- **Metodología de modernización validada** en un contexto de comunidad distribuida.
+- Evidencia empírica sobre el impacto de prácticas DevOps en proceso y producto.
+
+**En el ámbito tecnológico**
+
+- Continuidad y mejora de eXeLearning como herramienta para creación de REA.
+- Documentación y guías transferibles a otros proyectos de software educativo.
 
 <!--
 NOTAS AL ORADOR:
-- Impacto DUAL: rescatar eXe + crear conocimiento transferible
-- REA as Code: idea innovadora (recursos educativos tratados como código fuente)
-- Ventajas: versionado, revisión por pares, trazabilidad, integración con CI/CD
-- Potencial de cambio en cómo se crean y mantienen los recursos educativos abiertos
-
-- Métricas basadas en literatura DevOps (DORA, Accelerate)
-- Validación empírica en caso real de eXeLearning
-- Si se confirman: modelo replicable; si NO: también es conocimiento científico
-- Impacto DUAL: técnico (proceso) + organizativo (comunidad)
+- Subrayar que la “metodología validada” es la aportación central a la comunidad científica.
+- El caso eXeLearning ofrece además un beneficio directo a la comunidad educativa.
 -->
 
 ---
@@ -602,43 +503,22 @@ NOTAS AL ORADOR:
 
 # 6. Conclusiones
 
-## Más allá de eXeLearning
-
-<!--
-NOTAS AL ORADOR:
-- Slide final antes de preguntas
-- Mensaje: esta tesis trasciende el caso particular de eXeLearning
-- Hablar del impacto más amplio en el ecosistema OSS educativo
--->
+## De la catedral al bazar, con método
 
 ---
 
 # Conclusiones
 
-Esta tesis responde a un **reto real** y busca generar **conocimiento transferible** que beneficie al ecosistema educativo.
+Esta tesis propone:
 
-<div class="multicolumn vcenter"><div>
-
-### Para eXeLearning
-
-- Rescate de un proyecto crítico usado por miles de docentes
-- Metodología validada y sostenible
-- Comunidad coordinada y resiliente
-
-### Para la comunidad científica
-
-- Validación empírica de DevOps en OSS educativo
-
-
-</div></div>
+- Estudiar la modernización de eXeLearning como **caso de transición crítica** de un modelo "catedral" a un "bazar" comunitario.
+- Formular y contrastar **hipótesis claras** sobre el papel de una metodología DevOps en esa transición.
+- Desarrollar y validar una **metodología de modernización** que pueda reutilizarse en proyectos similares.
 
 <!--
 NOTAS AL ORADOR:
-- Triple impacto: eXe (práctico) + ciencia (teórico) + comunidad (transferible)
-- No es solo "arreglar eXe": es crear un MODELO replicable
-- REA as Code: paradigma innovador para gestionar recursos educativos
-- Énfasis: conocimiento científico validado y transferible
-- Sostenibilidad garantizada por integración con rol laboral
+- Cerrar con la idea de que eXeLearning es el laboratorio donde se prueba una metodología de interés general.
+- Dejar claro que el éxito de la tesis no es solo “que eXe funcione mejor”, sino que haya una contribución científica sobre cómo lograrlo.
 -->
 
 ---
@@ -654,13 +534,10 @@ NOTAS AL ORADOR:
 
 <!--
 NOTAS AL ORADOR:
-- Pausa, mirada al tribunal
-- "Estoy abierto a preguntas, comentarios o sugerencias para mejorar el plan"
-- Anticipar posibles preguntas:
-  * ¿Cómo garantizas la validez de las métricas?
-  * ¿Qué pasa si la comunidad no adopta DevOps?
-  * ¿Cómo gestionas conflictos entre administraciones?
-  * ¿REA as Code ya existe en algún sitio?
+- Anticipar preguntas típicas:
+  * ¿Qué métricas concretas se usarán?
+  * ¿Cómo se aislará el efecto de DevOps de otros factores?
+  * ¿Qué ocurre si la comunidad no adopta la metodología?
 -->
 
 ---
@@ -685,14 +562,6 @@ NOTAS AL ORADOR:
 
 </div></div>
 
-<!--
-NOTAS AL ORADOR:
-- Referencias clave del data.yaml
-- Raymond: marco conceptual principal (catedral/bazar)
-- Merelo: director, experto en soft computing y repositorios
-- Resto: contexto de eXeLearning y modernización de software
--->
-
 ---
 
 <!-- _class: white-slide -->
@@ -702,10 +571,3 @@ NOTAS AL ORADOR:
 ![bg h:60%](../images/ugr/UGR-MARCA-01-monocromo.svg)
 
 </div>
-
-<!--
-NOTAS AL ORADOR:
-- Slide final de cierre
-- Silencio, logo UGR
-- Esperar preguntas o comentarios finales
--->
