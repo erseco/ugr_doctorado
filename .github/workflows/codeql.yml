@@ -16,10 +16,12 @@ on:
     branches: [ "main" ]
     paths:
       - 'code/**'
+      - '.github/workflows/codeql.yml'
   pull_request:
     branches: [ "main" ]
     paths:
       - 'code/**'
+      - '.github/workflows/codeql.yml'
 
 jobs:
   analyze:
