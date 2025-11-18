@@ -22,7 +22,7 @@ paginate: true
 ![bg left:50%](../images/ugr/UGR-MARCA-01-color.svg)
 
 <div class="title">De la catedral al bazar</div>
-<div class="subtitle">Modernización de eXeLearning mediante DevOps, integración continua y buenas prácticas de desarrollo</div>
+<div class="subtitle">Metodología de modernización de sistemas obsoletos en comunidades abiertas. Estudio de caso: eXeLearning</div>
 <div class="author">Ernesto Serrano</div>
 <div class="date">Granada, 2025</div>
 <div class="organization">Escuela Internacional de Posgrado</div>
@@ -46,7 +46,7 @@ NOTAS AL ORADOR:
 # Programa de Doctorado en **TIC**
 
 - Línea: **Soft Computing**
-- Enfoque: **Metodología para modernizar software educativo**
+- Enfoque: **Metodología para modernizar software heredado**
 - Director: **Juan Julián Merelo Guervós**
 
 <!--
@@ -64,11 +64,11 @@ NOTAS AL ORADOR:
 
 0. [Título y contexto](#1)
 1. [Introducción y estado del arte](#4)
-2. [Problema y marco teórico](#8)
-3. [Hipótesis y objetivos](#11)
-4. [Metodología y plan de trabajo](#16)
-5. [Impacto esperado](#20)
-6. [Conclusiones](#22)
+2. [Problema y marco teórico](#9)
+3. [Hipótesis y objetivos](#12)
+4. [Metodología y plan de trabajo](#17)
+5. [Impacto esperado](#21)
+6. [Conclusiones](#23)
 
 
 <!--
@@ -93,6 +93,28 @@ NOTAS AL ORADOR:
 NOTAS AL ORADOR:
 - Situar brevemente qué es eXeLearning y por qué es relevante en educación.
 - Enlazar con la transición "de la catedral al bazar" como cambio de modelo organizativo.
+- Situar brevemente el problema general: modernización de sistemas heredados en comunidades abiertas.
+-->
+
+---
+
+# El reto: de la catedral al bazar en sistemas heredados
+
+**El fenómeno** (Raymond, 1999; Capiluppi & Michlmayr, 2007)
+Transición de modelos centralizados ("catedral") a modelos distribuidos y autoorganizados ("bazar") en proyectos de software libre.
+
+**Problema típico** (Tsanas, 2024; Li et al., 2020; Ma et al., 2022)
+Migrar sistemas heredados sin detener el servicio, usando patrones como *Strangler Fig*, manteniendo la coherencia funcional.
+
+**Perspectiva de sistemas complejos** (Merelo et al., 2017; Merelo, 2015)
+Repositorios y comunidades de desarrollo como sistemas autoorganizados.
+
+**Caso de estudio: eXeLearning**
+Proyecto educativo de código abierto en situación crítica de modernización, que se utilizará como laboratorio para aplicar y evaluar estas ideas.
+
+<!--
+NOTAS AL ORADOR:
+- Enfatizar: primero el marco general y trabajos previos, después el caso.
 -->
 
 ---
@@ -132,7 +154,7 @@ NOTAS AL ORADOR:
 
 ---
 
-# De la **catedral** al **bazar**¹
+# De la **catedral** al **bazar**
 
 <div class="multicolumn vcenter"><div>
 
@@ -154,13 +176,7 @@ NOTAS AL ORADOR:
 
 </div></div>
 
-<footnote>
-
-¹ Raymond, E. S. (1999). *The cathedral and the bazaar.*
-
-</footnote>
-
-> **Pregunta de fondo:** ¿Cómo estructurar este “bazar” para garantizar la continuidad y calidad de eXeLearning?
+> **Pregunta de fondo:** ¿Cómo estructurar el “bazar” para garantizar la continuidad y calidad de proyectos *heredados*?
 
 <!--
 NOTAS AL ORADOR:
@@ -208,6 +224,7 @@ NOTAS AL ORADOR:
 - Crisis de confianza: ¿quién continúa el proyecto?
 - Relacionar esta situación con trabajos previos sobre fracaso en modernización de software legado y retos de gobernanza en OSS.
 - No dramatizar; presentar la crisis como punto de partida para una investigación.
+- Presentar esta doble crisis como motivación del caso de estudio, no como la tesis entera.
 -->
 
 
@@ -248,11 +265,11 @@ NOTAS AL ORADOR:
 
 ### Paradoja de Teseo
 
-¿Hasta dónde se puede sustituir el código de eXeLearning y seguir considerando que es el mismo proyecto?
+Necesidad de pruebas de regresión que aseguren la **identidad funcional** durante la sustitución gradual de componentes.
 
 ### Strangler Fig Pattern
 
-Migración incremental: rodear el legado con componentes nuevos y sustituirlo de forma progresiva.
+Migración incremental: **rodear el legado** con componentes nuevos y sustituirlo de forma progresiva.
 
 </div><div>
 
@@ -270,6 +287,9 @@ Prácticas de integración continua y automatización como posible forma de orga
 NOTAS AL ORADOR:
 - Mostrar que el problema se apoya en marcos conceptuales claros: filosofía de identidad, patrones de migración, sistemas complejos y prácticas DevOps.
 - Enfatizar que DevOps aquí no se presenta como solución dada, sino como objeto de estudio: queremos analizar su efecto en este contexto.
+
+¿y Soft Computing dónde está exactamente?” Podemos usar tecnicas como: clustering de contribuciones, análisis de series temporales, quizá modelos predictivos ligeros sobre métricas.
+
 -->
 
 ---
@@ -283,7 +303,7 @@ NOTAS AL ORADOR:
 
 # Hipótesis de trabajo
 
-> Se propone estudiar en qué medida la adopción de una **metodología DevOps** (integración y entrega continua, pruebas automatizadas y pautas de calidad) puede reducir el tiempo de desarrollo, aumentar la frecuencia de versiones estables y mitigar los problemas técnicos acumulados en un proyecto de código abierto.
+> ¿Se puede reducir el tiempo de desarrollo, aumentar la frecuencia de entregas y mitigar los problemas técnicos acumulados en un proyecto de código abierto adoptando una **metodología inspirada en prácticas DevOps**?
 
 <!--
 NOTAS AL ORADOR:
@@ -309,7 +329,7 @@ NOTAS AL ORADOR:
 
 # Objetivo general
 
-> Desarrollar y validar una **metodología de modernización basada en prácticas DevOps** aplicada al caso de eXeLearning, y analizar su impacto en el proceso de desarrollo y en la calidad del software.
+> Desarrollar y validar una **metodología de modernización** aplicada al caso de eXeLearning, y cuantificar su impactacto en la reducción de la deuda técnica y la estabilidad del ciclo de vida del software.
 
 <!--
 NOTAS AL ORADOR:
@@ -326,8 +346,7 @@ NOTAS AL ORADOR:
 
 **O1 – Diagnosticar**
 
-- Analizar el estado actual del proyecto.
-- Establecer una línea base cuantitativa de calidad del código y del proceso de desarrollo.
+- Establecer métricas de proceso, producto y DX que describan el estado inicial del proyecto y su comunidad.
 
 </div>
 
@@ -335,10 +354,9 @@ NOTAS AL ORADOR:
 
 <div class="callout info">
 
-**O2 – Intervenir**
+**O2 – Proponer**
 
-- Diseñar e implantar una metodología DevOps adaptada al proyecto.
-- Configurar procesos de integración continua, pruebas y revisión colaborativa.
+- Diseñar e implantar en el caso de estudio una metodología de modernización basada en prácticas DevOps orientada a mejorar dichas métricas.
 
 </div>
 
@@ -348,8 +366,7 @@ NOTAS AL ORADOR:
 
 **O3 – Evaluar**
 
-- Comparar métricas antes y después de la intervención.
-- Valorar el impacto en proceso, producto y comunidad.
+- Evaluar la evolución de las métricas y extraer pautas aplicables a proyectos con características similares.
 
 </div>
 
@@ -357,14 +374,26 @@ NOTAS AL ORADOR:
 
 <!--
 NOTAS AL ORADOR:
-- Enlazar cada objetivo con las hipótesis: diagnóstico → justificación; intervención → experimentación; evaluación → validación/refutación.
+
+O1 – Diagnosticar
+ - Definir y calcular un conjunto de métricas de proceso (p. ej. tiempo de ciclo, frecuencia de versiones) y de producto (p. ej. defectos, complejidad, cobertura de pruebas) que describan el estado inicial.
+ - Caracterizar también la comunidad y la *developer experience* (DX) mediante datos del repositorio y cuestionarios breves.
+
+O2 – Proponer e implantar
+ - Diseñar una metodología de modernización inspirada en prácticas DevOps que especifique qué cambios de proceso se introducen y qué métricas se pretende mejorar.
+ - Implantar dicha metodología en el caso de estudio, incluyendo automatización parcial, pruebas y revisión colaborativa.
+
+O3 – Evaluar
+ - Analizar la evolución de las métricas de proceso, producto y DX tras la intervención, comparándolas con la línea base.
+ - Extraer pautas y condiciones de aplicabilidad para otros proyectos de características similares.
 -->
+
 
 ---
 
 <!-- _class: chapter -->
 
-# 5. Metodología y plan de trabajo
+# 4. Metodología y plan de trabajo
 
 ## De la formulación al diseño experimental
 
@@ -374,13 +403,13 @@ NOTAS AL ORADOR:
 
 Enfoque mixto, con combinación de análisis cuantitativo de repositorios y evaluación cualitativa mediante entrevistas y encuestas.
 
-1. **Revisión bibliográfica:** Estado del arte - DevOps, OSS, métricas de calidad
+1. **Revisión bibliográfica:** Estado del arte sobre modernización de software *legacy*, patrones como *Strangler Fig*, métricas de calidad, DevOps, DX.
 
-2. **Diagnóstico inicial:** Análisis de código, commits, releases, deuda técnica
+2. **Diagnóstico inicial:** Análisis de código, commits, releases y problemas técnicos acumulados.
 
-3. **Diseño e implantación de la metodología:** Arquitectura, pipelines CI/CD, pruebas, análisis estático
+3. **Diseño e implantación de la metodología:** Arquitectura, procesos de integración continua, test, análisis estático y participación de la comunidad.
 
-4. **Evaluación:** Métricas, Calidad de código, Encuestas y entrevistas
+4. **Evaluación:** Comparativa de métricas pre/post intervención y análisis cualitativo (encuestas).
 
 5. **Producción científica**: Resultados → artículos → transferencia
 
@@ -400,6 +429,9 @@ NOTAS AL ORADOR:
 3. **Diseño e implantación de la metodología**
    - Definición de arquitectura de migración y procesos automáticos.
    - Introducción de pruebas, análisis estático y flujos de colaboración.
+   - IMPORTANTE: Siguiendo el rigor científico, no aplicaremos cambios masivos al sistema crítico desde el día 1. 
+      Primero aislaremos un módulo (piloto) para validar 
+      que nuestras métricas de control funcionan, y solo entonces escalaremos
 
 4. **Evaluación**
    - Comparación pre/post de métricas de proceso y calidad.
@@ -417,7 +449,7 @@ NOTAS AL ORADOR:
 
 # Planificación temporal (3 años)
 
-<div style="margin: 0 200px; width: 100%;">
+<div style="margin: 0 150px; width: 100%;">
 
 
 | Actividad | Año 1 | Año 2 | Año 3 |
@@ -426,9 +458,9 @@ NOTAS AL ORADOR:
 | **Diagnóstico inicial** | X |  |  |
 | **Diseño de la metodología** | X | X |  |
 | **Implantación y ajuste** |  | X | X |
-| **Evaluación y validación** | X | X | X |
+| **Evaluación y validación** | Eval. inicial | Eval. intermedia | Validación final|
 | **Transferencia de resultados** |   |   | X |
-| **Artículos y memoria de tesis** | Art. 1 | Art. 2 | Art. 3 |
+| **Artículos y memoria de tesis** | Art. 1 | Art. 2 | Art. 3 + memoria |
 
 </div>
 
@@ -509,7 +541,7 @@ NOTAS AL ORADOR:
 
 # Conclusiones
 
-Esta tesis propone:
+Esta tesis propone **trascender la ingeniería para hacer ciencia**:
 
 - Estudiar la modernización de eXeLearning como **caso de transición crítica** de un modelo "catedral" a un "bazar" comunitario.
 - Formular y contrastar **hipótesis claras** sobre el papel de una metodología DevOps en esa transición.
@@ -519,6 +551,7 @@ Esta tesis propone:
 NOTAS AL ORADOR:
 - Cerrar con la idea de que eXeLearning es el laboratorio donde se prueba una metodología de interés general.
 - Dejar claro que el éxito de la tesis no es solo “que eXe funcione mejor”, sino que haya una contribución científica sobre cómo lograrlo.
+- Cerrar recalcando la aportación científica: metodología + evidencia, más allá de un único proyecto.
 -->
 
 ---
@@ -548,17 +581,16 @@ NOTAS AL ORADOR:
 
 <div class="multicolumn"><div>
 
-1. **Aguado-Moralejo, R. et al. (2021).** *eXeLearning, una herramienta de autor para la creación de Recursos Educativos Abiertos.*
-2. **Prasad, P. W. C. (2017).** *Open source software for open educational resources.*
-3. **González, S. S. (2019).** *eXeLearning: la herramienta de autor que fomenta la creación de recursos educativos abiertos.*
-4. **Raymond, E. S. (1999).** *The cathedral and the bazaar.* O'Reilly.
+1. **Raymond, E. S. (1999).** *The cathedral and the bazaar.* O'Reilly.
+2. **Capiluppi, A. et al. (2007).** *The cathedral and the bazaar: A study of the open source development model.*
+3. **Tsanas, J. P. S. (2024).** *Using the Strangler Fig Pattern on a monolithic game server.*
+4. **Merelo, J. J. et al. (2017).** *Self-organized criticality in software repositories.*
 
 </div><div>
 
-5. **Ministerio de Educación y Formación Profesional (2021).** *Resolución de la Secretaría de Estado de Educación.*
-6. **Li, J. et al. (2020).** *Microservice architecture: A case study of a legacy system.*
-7. **Merelo, J. J. et al. (2017).** *Self-organized criticality in software repositories.*
-8. **Capiluppi, A. et al. (2007).** *The cathedral and the bazaar: A study of the open source development model.*
+5. **Li, J. et al. (2020).** *Microservice architecture: A case study of a legacy system.*
+6. **Aguado-Moralejo, R. et al. (2021).** *eXeLearning, una herramienta de autor para la creación de Recursos Educativos Abiertos.*
+7. **Ministerio de Educación y Formación Profesional (2021).** *Resolución de la Secretaría de Estado de Educación.*
 
 </div></div>
 
