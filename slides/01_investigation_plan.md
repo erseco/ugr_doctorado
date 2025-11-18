@@ -242,7 +242,7 @@ NOTAS AL ORADOR:
 ---
 
 
-# Marco teorico
+# Marco teórico
 
 <div class="multicolumn vcenter"><div>
 
