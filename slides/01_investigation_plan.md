@@ -29,11 +29,10 @@ paginate: true
 
 <!--
 NOTAS AL ORADOR:
-- Presentarse brevemente.
-- Frase de contexto: "Hoy presento el plan de investigación de mi tesis doctoral".
-- Hook: "¿Qué pasa cuando un software educativo usado por miles de docentes entra en crisis tecnológica y organizativa?"
-- Remarcar: no vengo a contar un proyecto ya hecho, sino una investigación que va a estudiar cómo modernizarlo.
-- Duración total: 15-20 minutos aproximadamente
+- **Inicio formal y pausa breve.**
+- Presentarte: “Soy Ernesto Serrano…”.
+- Recordar: título, línea del programa y dirección del doctor JJ Merelo.
+- **Gatillo:** “repositorios como sistemas complejos → transición crítica”.
 -->
 
 ---
@@ -51,9 +50,9 @@ NOTAS AL ORADOR:
 
 <!--
 NOTAS AL ORADOR:
-- Enlazar con la línea de Soft Computing: repositorios como sistemas complejos y autoorganizados.
-- Aclarar que la tesis se orienta a desarrollar y validar una metodología general usando eXeLearning como caso de estudio.
-- La decisión formal sobre modalidad (compendio o no) se ajustará a la normativa y a la producción científica final.
+- Conectar con Soft Computing: “los repositorios no son fábricas, son sistemas autoorganizados”.
+- Aclarar que el caso eXeLearning funciona como **laboratorio experimental**.
+- **Gatillo:** “estructura clara y normativa → hoja de ruta".
 -->
 
 ---
@@ -73,12 +72,9 @@ NOTAS AL ORADOR:
 
 <!--
 NOTAS AL ORADOR:
-- Se sigue la estructura de la rúbrica:
-  1) Estado del arte e introducción del caso.
-  2) Formulación del problema enmarcado teóricamente.
-  3) Hipótesis y objetivos de investigación.
-  4) Metodología y plan temporal.
-  5) Impacto y conclusiones.
+- Enumerar con los dedos si ayuda.
+- Seguir el orden exacto de la normativa.
+- **Gatillo:** “Estado del arte → problema → hipótesis → metodología → impacto”.
 -->
 
 ---
@@ -91,9 +87,10 @@ NOTAS AL ORADOR:
 
 <!--
 NOTAS AL ORADOR:
-- Situar brevemente qué es eXeLearning y por qué es relevante en educación.
-- Enlazar con la transición "de la catedral al bazar" como cambio de modelo organizativo.
-- Situar brevemente el problema general: modernización de sistemas heredados en comunidades abiertas.
+- Entrar en modo narrativo, tono cercano.
+- REA = recursos abiertos, reutilizables, accesibles
+- Explicar qué es eXeLearning y por qué es crítico en educación.
+- **Gatillo:** “No es arreglar un programa → es estudiar un fenómeno”.
 -->
 
 ---
@@ -114,7 +111,9 @@ Proyecto educativo de código abierto en situación crítica de modernización, 
 
 <!--
 NOTAS AL ORADOR:
-- Enfatizar: primero el marco general y trabajos previos, después el caso.
+- Contar el conflicto: “transición forzosa bajo presión”.
+- Enfasis: el vacío en la literatura → cómo gestionar esa transición.
+- **Gatillo:** presentar eXe como “paciente”.
 -->
 
 ---
@@ -142,14 +141,13 @@ NOTAS AL ORADOR:
 
 <!--
 NOTAS AL ORADOR:
-- Subrayar que es software crítico en muchas administraciones educativas.
-- REA = recursos abiertos, reutilizables, accesibles
-- Conectar con el estado del conocimiento: eXe aparece en la literatura sobre REA y herramientas de autor.
-- Si buscamos en buscadores:
+- Presentar el peso real del proyecto: “herramienta crítica en educación”.
+- Citar números .
   - Google Scholar: 7860 resultados
   - Web of Science: 130 resultados
   - Dialnet: 101 resultados
   - DigiBug: 21 resultados
+- **Gatillo:** “no es menor → es infraestructura educativa”.
 -->
 
 ---
@@ -180,10 +178,11 @@ NOTAS AL ORADOR:
 
 <!--
 NOTAS AL ORADOR:
-- Transición FORZOSA de catedral a bazar, no planificada
+- Explicar brevemente la metáfora.
 - El bazar tiene ventajas (resiliencia, diversidad) pero también riesgos (fragmentación, falta de dirección)
 - Referenciar brevemente la literatura sobre modelos de desarrollo OSS (Raymond, Capiluppi & Michlmayr).
-- Introducir que la tesis se sitúa en este contexto: un proyecto educativo de software libre en transición crítica.
+- Resaltar que esta **transición no fue buscada**.
+- **Gatillo:** “riesgos del bazar → caos si no se estructura”.
 -->
 
 ---
@@ -218,16 +217,10 @@ NOTAS AL ORADOR:
 
 <!--
 NOTAS AL ORADOR:
-- Doble golpe: tecnología Y gobernanza
-- Python 2 EOL = sin soporte, sin seguridad, sin futuro
-- El intento institucional de modernización fracasó estrepitosamente
-- Crisis de confianza: ¿quién continúa el proyecto?
-- Relacionar esta situación con trabajos previos sobre fracaso en modernización de software legado y retos de gobernanza en OSS.
-- No dramatizar; presentar la crisis como punto de partida para una investigación.
-- Presentar esta doble crisis como motivación del caso de estudio, no como la tesis entera.
+- Exponer la “tormenta perfecta”: crisis tecnológica + organizativa.
+- **Gatillo:** “Aquí la ingeniería deja paso a la ciencia”.
+- Marcar la motivación del caso como punto de partida, no como el fin.
 -->
-
-
 ---
 
 <!-- _class: chapter -->
@@ -235,8 +228,6 @@ NOTAS AL ORADOR:
 # 2. Problema y marco teórico
 
 ## Un caso de modernización en transición crítica
-
-
 
 ---
 
@@ -252,12 +243,12 @@ NOTAS AL ORADOR:
 NOTAS AL ORADOR:
 - Dejar claro que la tesis no asume que DevOps funcione por defecto: se propone estudiarlo empíricamente.
 - Conectar con la rúbrica: de la revisión del estado del conocimiento se deriva un problema bien definido.
-
-- NOTA: el problema está formulado como cuestión abierta, no como solución ya encontrada 
+- Presentarlo como *problema científico*, no técnico.
+- **Gatillo:** “migrar un monolito mientras cambia la gobernanza”.
+- Dejar claro que las hipótesis se van a poner a prueba.
 -->
 
 ---
-
 
 # Marco teórico
 
@@ -285,14 +276,14 @@ Prácticas de integración continua y automatización como posible forma de orga
 
 <!--
 NOTAS AL ORADOR:
-- Mostrar que el problema se apoya en marcos conceptuales claros: filosofía de identidad, patrones de migración, sistemas complejos y prácticas DevOps.
-- Enfatizar que DevOps aquí no se presenta como solución dada, sino como objeto de estudio: queremos analizar su efecto en este contexto.
-
-¿y Soft Computing dónde está exactamente?” Podemos usar tecnicas como: clustering de contribuciones, análisis de series temporales, quizá modelos predictivos ligeros sobre métricas.
-
+- Exponer los 4 pilares con frases breves.
+- **Gatillo:** “Teseo = identidad”, “Strangler = sustitución gradual”.
+- ¿y Soft Computing dónde está exactamente?” Podemos usar tecnicas como: clustering de contribuciones, análisis de series temporales, quizá modelos predictivos ligeros sobre métricas.
+- DevOps no es solo despliegue: remarcar “reducción de entropía”.
 -->
 
 ---
+
 <!-- _class: chapter -->
 
 # 3. Hipótesis y objetivos
@@ -307,8 +298,8 @@ NOTAS AL ORADOR:
 
 <!--
 NOTAS AL ORADOR:
-- Insistir en el carácter contrastable de las hipótesis: cada una se puede validar o refutar con métricas.
-- Evitar el tono de "ya lo hemos conseguido"; hablar siempre en futuro y condicional.
+- Tono claro: hipótesis contrastable, no conclusión.
+- **Gatillo:** “DevOps → catalizador en transiciones OSS”.
 -->
 
 ---
@@ -324,6 +315,11 @@ NOTAS AL ORADOR:
 - **H3 – Evolución segura**  
   La refactorización guiada por pruebas permitirá sustituir componentes heredados con menor riesgo, favoreciendo una modernización progresiva.
 
+<!--
+NOTAS AL ORADOR:
+- Tono científico, conciso.
+- **Gatillo:** “Proceso → Calidad → Evolución”.
+-->
 
 ---
 
@@ -333,7 +329,8 @@ NOTAS AL ORADOR:
 
 <!--
 NOTAS AL ORADOR:
-- Explicar que eXeLearning es el laboratorio donde se prueba la metodología, pero el objetivo es generalizable a proyectos similares.
+- Recalcar la idea clave: **el software es un subproducto**, la tesis es la metodología.
+- **Gatillo:** “caso de estudio → laboratorio”.
 -->
 
 ---
@@ -374,20 +371,19 @@ NOTAS AL ORADOR:
 
 <!--
 NOTAS AL ORADOR:
-
-O1 – Diagnosticar
- - Definir y calcular un conjunto de métricas de proceso (p. ej. tiempo de ciclo, frecuencia de versiones) y de producto (p. ej. defectos, complejidad, cobertura de pruebas) que describan el estado inicial.
+- Relacionar con el esquema mnemotécnico: Diagnosticar → Implantar → Evaluar.
+- O1 – Diagnosticar
+ - Definir y calcular un conjunto de métricas de proceso (p. ej. tiempo de ciclo, frecuencia de versiones) y de producto (p. ej. defectos, complejidad c., cobertura) del estado inicial.
  - Caracterizar también la comunidad y la *developer experience* (DX) mediante datos del repositorio y cuestionarios breves.
-
-O2 – Proponer e implantar
+- O2 – Proponer e implantar
  - Diseñar una metodología de modernización inspirada en prácticas DevOps que especifique qué cambios de proceso se introducen y qué métricas se pretende mejorar.
  - Implantar dicha metodología en el caso de estudio, incluyendo automatización parcial, pruebas y revisión colaborativa.
-
-O3 – Evaluar
+- O3 – Evaluar
  - Analizar la evolución de las métricas de proceso, producto y DX tras la intervención, comparándolas con la línea base.
  - Extraer pautas y condiciones de aplicabilidad para otros proyectos de características similares.
--->
 
+- **Gatillo:** “Antes / Después”.
+-->
 
 ---
 
@@ -415,37 +411,16 @@ Enfoque mixto, con combinación de análisis cuantitativo de repositorios y eval
 
 <!--
 NOTAS AL ORADOR:
-- Recalcar alineación con la rúbrica: metodología adecuada a los objetivos, con ventajas y limitaciones explícitas.
-- Mencionar brevemente que no se tratan datos personales sensibles, por lo que los aspectos éticos se centran en transparencia de procesos y licencias de software libre.
-
-1. **Revisión bibliográfica**
-   - Modernización de software legado, DevOps en OSS, métricas de calidad y productividad.
-   - Posicionamiento de eXeLearning en el ecosistema de herramientas de autor y REA.
-
-2. **Diagnóstico inicial**
-   - Análisis del repositorio: actividad, releases, incidencias.
-   - Métricas de código: complejidad, módulos críticos, problemas acumulados.
-
-3. **Diseño e implantación de la metodología**
-   - Definición de arquitectura de migración y procesos automáticos.
-   - Introducción de pruebas, análisis estático y flujos de colaboración.
-   - IMPORTANTE: Siguiendo el rigor científico, no aplicaremos cambios masivos al sistema crítico desde el día 1. 
-      Primero aislaremos un módulo (piloto) para validar 
-      que nuestras métricas de control funcionan, y solo entonces escalaremos
-
-4. **Evaluación**
-   - Comparación pre/post de métricas de proceso y calidad.
-   - Entrevistas y encuestas a desarrolladores y usuarios.
-
-5. **Producción científica**
-   - Artículos que recojan el diagnóstico, la metodología propuesta y los resultados de la evaluación.
-
-
-
+- Enfatizar que el enfoque es mixto (cuantitativo + cualitativo).
+- Introducción de pruebas, análisis estático y flujos de colaboración.
+- IMPORTANTE: Siguiendo el rigor científico, no aplicaremos cambios masivos al sistema crítico desde el día 1.
+   Primero aislaremos un módulo (piloto) para validar
+   que nuestras métricas de control funcionan, y solo entonces escalaremos
+- **Gatillo:** “datos históricos → 15 años”.
+- Recordar que no hay tratamiento de datos sensibles.
 -->
 
 ---
-
 
 # Planificación temporal (3 años)
 
@@ -466,11 +441,9 @@ NOTAS AL ORADOR:
 
 <!--
 NOTAS AL ORADOR:
-- Resumir en una frase:
-  * Año 1: marco teórico y diagnóstico.
-  * Año 2: diseño e implantación de la metodología.
-  * Año 3: evaluación, transferencia y redacción final.
-- No entrar al detalle de cada celda, la tabla ya transmite estructura y factibilidad.
+- Frase resumen:  
+  **Año 1 → Diagnóstico. Año 2 → Intervención. Año 3 → Validación.**
+- Mostrar seguridad en la viabilidad.
 -->
 
 ---
@@ -497,9 +470,9 @@ NOTAS AL ORADOR:
 
 <!--
 NOTAS AL ORADOR:
-- Destacar que el plan es factible con los medios ya disponibles.
+- Ser directo: “No requiere financiación externa relevante”.
+- **Gatillo:** “viabilidad total”.
 -->
-
 ---
 
 <!-- _class: chapter -->
@@ -525,8 +498,9 @@ NOTAS AL ORADOR:
 
 <!--
 NOTAS AL ORADOR:
-- Subrayar que la “metodología validada” es la aportación central a la comunidad científica.
-- El caso eXeLearning ofrece además un beneficio directo a la comunidad educativa.
+- Tono conclusivo: “aportación científica” → lo más importante.
+- **Gatillo:** “DevOps como catalizador”.
+- Recordar que hay impacto doble: científico y social.
 -->
 
 ---
@@ -549,9 +523,9 @@ Esta tesis propone **trascender la ingeniería para hacer ciencia**:
 
 <!--
 NOTAS AL ORADOR:
-- Cerrar con la idea de que eXeLearning es el laboratorio donde se prueba una metodología de interés general.
-- Dejar claro que el éxito de la tesis no es solo “que eXe funcione mejor”, sino que haya una contribución científica sobre cómo lograrlo.
-- Cerrar recalcando la aportación científica: metodología + evidencia, más allá de un único proyecto.
+- Cerrar con solvencia: “intervención controlada y medible”.
+- **Gatillo:** “método replicable → ordenar el bazar”.
+- Rematar con una frase final clara antes del turno de preguntas.
 -->
 
 ---
@@ -567,10 +541,11 @@ NOTAS AL ORADOR:
 
 <!--
 NOTAS AL ORADOR:
-- Anticipar preguntas típicas:
-  * ¿Qué métricas concretas se usarán?
-  * ¿Cómo se aislará el efecto de DevOps de otros factores?
-  * ¿Qué ocurre si la comunidad no adopta la metodología?
+- Mantener serenidad; pausa antes de responder.
+- **Gatillo para preguntas clave:**
+  - Métricas → proceso, calidad, DX.
+  - Aislar efecto DevOps → comparación pre/post.
+  - Riesgo de no adopción comunitaria → mitigado con intervención gradual.
 -->
 
 ---
