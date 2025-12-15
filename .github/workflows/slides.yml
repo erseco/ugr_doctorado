@@ -42,7 +42,7 @@ jobs:
           rm -f output/site/slides/00_*.pdf output/site/slides/00_*.html
           node slides/scripts/generate-index.js output/site/slides output/site/index.html
 
-      - uses: actions/upload-artifact@v5
+      - uses: actions/upload-artifact@v6
         with:
           name: slides
           path: output/slides/*.pdf
