@@ -48,7 +48,7 @@ jobs:
       - name: Build Project Docs
         run: make project
 
-      - uses: actions/upload-artifact@v5
+      - uses: actions/upload-artifact@v6
         with:
           name: project-docs
           path: |
