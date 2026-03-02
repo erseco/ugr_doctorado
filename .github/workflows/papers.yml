@@ -57,7 +57,7 @@ jobs:
       - name: Remove 00_* files from releases
         run: rm -f output/papers/00_*.pdf
 
-      - uses: actions/upload-artifact@v6
+      - uses: actions/upload-artifact@v7
         with:
           name: papers
           path: output/papers/*.pdf
